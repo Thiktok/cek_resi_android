@@ -14,6 +14,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_URL", '"https://api.binderbyte.com/"'
+        buildConfigField "String", "API_KEY", '"d3ba682a507165b6220cba5a0723cf3e25fc15f0b1efb5d8734be533b42e49f5"'
+
     }
 
     buildTypes {
