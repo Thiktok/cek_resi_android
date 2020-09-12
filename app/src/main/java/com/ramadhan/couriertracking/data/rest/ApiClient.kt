@@ -1,6 +1,6 @@
-package com.example.couriertracking.data.rest
+package com.ramadhan.couriertracking.data.rest
 
-import com.example.couriertracking.BuildConfig
+import com.ramadhan.couriertracking.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

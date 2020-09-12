@@ -1,4 +1,4 @@
-package com.example.couriertracking.data.response
+package com.ramadhan.couriertracking.data.response
 
 data class BaseResponse<T>(
     val result: Boolean,

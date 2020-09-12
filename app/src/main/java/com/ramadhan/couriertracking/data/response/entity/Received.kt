@@ -1,4 +1,4 @@
-package com.example.couriertracking.data.response.entity
+package com.ramadhan.couriertracking.data.response.entity
 
 data class Received(
     val addr: String,

@@ -1,7 +1,8 @@
-package com.example.couriertracking
+package com.ramadhan.couriertracking.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ramadhan.couriertracking.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

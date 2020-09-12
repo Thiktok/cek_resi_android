@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Courier Tracking</string>
+    <string name="courier_tracker">Courier Tracker</string>
+    <string name="awb_hint">AWB number</string>
 </resources>

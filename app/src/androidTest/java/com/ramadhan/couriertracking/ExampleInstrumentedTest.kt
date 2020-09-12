@@ -1,4 +1,4 @@
-package com.example.couriertracking
+package com.ramadhan.couriertracking
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

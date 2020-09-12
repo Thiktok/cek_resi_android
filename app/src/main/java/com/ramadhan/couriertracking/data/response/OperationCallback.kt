@@ -1,4 +1,4 @@
-package com.example.couriertracking.data.response
+package com.ramadhan.couriertracking.data.response
 
 interface OperationCallback<T> {
     fun onSuccess(data: T?)
