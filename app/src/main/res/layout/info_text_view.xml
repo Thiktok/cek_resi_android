@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="12">
+
+    <TextView
+        android:id="@+id/customInfoLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:textColor="@android:color/black"
+        tools:text="Custom label" />
+
+    <TextView
+        android:id="@+id/customInfoColon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:gravity="center"
+        android:text="@string/colon"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/customInfoValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_weight="7.5"
+        tools:text="Custom value" />
+</LinearLayout>

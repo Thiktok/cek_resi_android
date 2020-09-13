@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="InfoTextView">
+        <attr name="textLabel" format="string|reference"/>
+        <attr name="labelColor" format="color|reference"/>
+        <attr name="textValue" format="string|reference"/>
+        <attr name="valueColor" format="color|reference"/>
+    </declare-styleable>
+</resources>

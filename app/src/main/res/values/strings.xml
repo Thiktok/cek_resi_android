@@ -5,4 +5,9 @@
     <string name="main_title">Cek Resi</string>
     <string name="lacak">Lacak</string>
     <string name="courier_item_icon">courier item icon</string>
+    <string name="courier_name">Nama Kurir</string>
+    <string name="no_resi">No. Resi</string>
+    <string name="tujuan_pengiriman">Tujuan Pengiriman</string>
+    <string name="status">Status</string>
+    <string name="colon">:</string>
 </resources>
