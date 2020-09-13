@@ -11,9 +11,11 @@
         android:id="@+id/mainTitle"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:text="@string/courier_tracker"
-        android:textSize="24sp"
         android:gravity="center"
+        android:text="@string/main_title"
+        android:textSize="24sp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/mainCourierList"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,6 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="40dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/mainAWBInput"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainTitle" />
@@ -31,11 +35,25 @@
         android:id="@+id/mainAWBInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/awb_hint"
         android:importantForAutofill="no"
         android:inputType="text"
-        android:hint="@string/awb_hint"
+        android:textAlignment="center"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/mainButtonSearch"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainCourierList" />
 
+    <Button
+        android:id="@+id/mainButtonSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button"
+        android:text="@string/lacak"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mainAWBInput" />
 </androidx.constraintlayout.widget.ConstraintLayout>

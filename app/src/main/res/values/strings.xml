@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Courier Tracking</string>
     <string name="courier_tracker">Courier Tracker</string>
-    <string name="awb_hint">AWB number</string>
+    <string name="awb_hint">No. Resi</string>
+    <string name="main_title">Cek Resi</string>
+    <string name="lacak">Lacak</string>
 </resources>
