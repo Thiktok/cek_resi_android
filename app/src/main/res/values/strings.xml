@@ -4,4 +4,5 @@
     <string name="awb_hint">No. Resi</string>
     <string name="main_title">Cek Resi</string>
     <string name="lacak">Lacak</string>
+    <string name="courier_item_icon">courier item icon</string>
 </resources>
