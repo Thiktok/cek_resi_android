@@ -15,7 +15,6 @@ class InfoTextView(context: Context, attrs: AttributeSet) : LinearLayout(context
 
         val attributes  = context.obtainStyledAttributes(attrs, R.styleable.InfoTextView)
 
-        customInfoValue.setText("hello")
         customInfoLabel.text = attributes.getString(R.styleable.InfoTextView_textLabel)
         customInfoValue.text = attributes.getString(R.styleable.InfoTextView_textValue)
 
@@ -32,5 +31,13 @@ class InfoTextView(context: Context, attrs: AttributeSet) : LinearLayout(context
         }
 
         attributes.recycle()
+    }
+
+    fun setValueText(labelText: String){
+        customInfoValue.text = labelText
+    }
+
+    fun setValueColor(id: Int){
+        customInfoValue.setTextColor(id)
     }
 }
