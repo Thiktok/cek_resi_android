@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <TextView
+        android:id="@+id/itemInfoDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        app:drawableStartCompat="@drawable/round"
+        app:layout_constraintBottom_toTopOf="@id/itemInfoDetail"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="12 - January - 2020" />
+
+    <TextView
+        android:id="@+id/itemInfoDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:drawablePadding="14dp"
+        android:paddingStart="6dp"
+        android:paddingEnd="0dp"
+        android:textColor="@android:color/black"
+        app:drawableStartCompat="@drawable/straight_line"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itemInfoDate"
+        tools:text="Your package received by " />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
