@@ -6,5 +6,8 @@ data class Courier(
     val name: String,
 
     @SerializedName("img_url")
-    val imgUrl: String
+    val imgUrl: String,
+
+    @SerializedName("codename")
+    val code: String
 )

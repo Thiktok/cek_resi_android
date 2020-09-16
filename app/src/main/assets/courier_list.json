@@ -1,22 +1,37 @@
 [
   {
     "name": "JNE",
+    "codename": "jne",
     "img_url": "jne"
   },
   {
     "name": "Pos Indonesia",
+    "codename": "pos",
     "img_url": "pos_indonesia"
   },
   {
     "name": "TIKI",
+    "codename": "tiki",
     "img_url": "tiki"
   },
   {
-    "name": "Sicepat",
+    "name": "Sicepat Ekspres",
+    "codename": "sicepat",
     "img_url": "sicepat"
   },
   {
     "name": "Wahana",
+    "codename": "wahana",
     "img_url": "wahana"
+  },
+  {
+    "name": "Anteraja",
+    "codename": "anteraja",
+    "img_url": "anteraja"
+  },
+  {
+    "name": "Ninja Xpress",
+    "codename": "ninja",
+    "img_url": "ninja_xpress"
   }
 ]

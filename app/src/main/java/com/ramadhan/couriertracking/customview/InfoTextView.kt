@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import com.ramadhan.couriertracking.R
 import kotlinx.android.synthetic.main.info_text_view.view.*
 
+@Suppress("DEPRECATION")
 class InfoTextView(context: Context, attrs: AttributeSet) : LinearLayout(context, attrs) {
 
     init {
