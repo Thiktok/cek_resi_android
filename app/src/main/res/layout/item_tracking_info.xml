@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/itemInfoDate"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:drawablePadding="8dp"
         android:textColor="@color/colorPrimary"
@@ -17,7 +17,21 @@
         app:layout_constraintBottom_toTopOf="@id/itemInfoDetail"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/itemInfoTime"
         tools:text="12 - January - 2020" />
+
+    <TextView
+        android:id="@+id/itemInfoTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawablePadding="8dp"
+        android:gravity="end"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/itemInfoDate"
+        app:layout_constraintLeft_toRightOf="@id/itemInfoDate"
+        app:layout_constraintTop_toTopOf="@id/itemInfoDate"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="02:00" />
 
     <TextView
         android:id="@+id/itemInfoDetail"
@@ -25,8 +39,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:drawablePadding="14dp"
-        android:paddingStart="6dp"
+        android:paddingStart="7dp"
         android:paddingEnd="0dp"
+        android:gravity="center_vertical"
         android:textColor="@android:color/black"
         app:drawableStartCompat="@drawable/straight_line"
         app:layout_constraintLeft_toLeftOf="parent"
