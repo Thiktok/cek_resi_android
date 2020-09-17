@@ -1,7 +1,10 @@
 package com.ramadhan.couriertracking.data.response.entity
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Courier(
     val name: String,
 
@@ -12,4 +15,4 @@ data class Courier(
     val code: String,
 
     val available: Boolean
-)
+): Parcelable

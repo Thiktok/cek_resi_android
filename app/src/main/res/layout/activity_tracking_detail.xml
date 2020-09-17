@@ -15,8 +15,7 @@
         app:layout_constraintBottom_toTopOf="@id/trackingDetailAwb"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:textLabel="Nama Kurir"
-        app:textValue="JNE | Reg" />
+        app:textLabel="Nama Kurir" />
 
     <com.ramadhan.couriertracking.customview.InfoTextView
         android:id="@+id/trackingDetailAwb"
@@ -24,66 +23,63 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         app:labelColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/trackingDetailStatus"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/trackingDetailCourierName"
-        app:layout_constraintBottom_toTopOf="@id/trackingDetailStatus"
-        app:textLabel="No. Resi"
-        app:textValue="AWB0000238923" />
+        app:textLabel="No. Resi" />
 
     <com.ramadhan.couriertracking.customview.InfoTextView
         android:id="@+id/trackingDetailStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:labelColor="@android:color/black"
         android:layout_marginTop="4dp"
+        app:labelColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/trackingDetailSender"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/trackingDetailAwb"
-        app:layout_constraintBottom_toTopOf="@id/trackingDetailSender"
         app:textLabel="Status"
-        app:textValue="On Delivery"
-        app:valueColor="@color/colorPrimary"/>
+        app:valueColor="@color/colorPrimary" />
 
     <com.ramadhan.couriertracking.customview.InfoTextView
         android:id="@+id/trackingDetailSender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:labelColor="@android:color/black"
         android:layout_marginTop="4dp"
+        app:labelColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/trackingDetailDestination"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/trackingDetailStatus"
-        app:layout_constraintBottom_toTopOf="@id/trackingDetailDestination"
-        app:textLabel="Pengirim"
-        app:textValue="Hello World Store"/>
+        app:textLabel="Pengirim" />
 
     <com.ramadhan.couriertracking.customview.InfoTextView
         android:id="@+id/trackingDetailDestination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:labelColor="@android:color/black"
         android:layout_marginTop="4dp"
+        app:labelColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/trackingDetailSeparator"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/trackingDetailSender"
-        app:layout_constraintBottom_toTopOf="@id/trackingDetailSeparator"
-        app:textLabel="Tujuan"
-        app:textValue="Ramadhan Chairan Jl Waters km3,6 Kasihan, Bantul, D.I.Y" />
+        app:textLabel="Tujuan" />
 
-    <view
+    <View
         android:id="@+id/trackingDetailSeparator"
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@id/trackingDetailDestination"
-        app:layout_constraintBottom_toTopOf="@id/trackingDetailInfo"/>
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@id/trackingDetailInfo"
+        app:layout_constraintTop_toBottomOf="@id/trackingDetailDestination" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/trackingDetailInfo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        tools:listitem="@layout/item_tracking_info"
-        app:layout_constraintTop_toBottomOf="@id/trackingDetailDestination"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/trackingDetailDestination"
+        tools:listitem="@layout/item_tracking_info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

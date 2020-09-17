@@ -34,8 +34,10 @@ class InfoTextView(context: Context, attrs: AttributeSet) : LinearLayout(context
         attributes.recycle()
     }
 
-    fun setValueText(labelText: String){
-        customInfoValue.text = labelText
+    fun setValueText(labelText: String?){
+        if(!labelText.isNullOrEmpty()){
+            customInfoValue.text = labelText
+        }
     }
 
     fun setValueColor(id: Int){
