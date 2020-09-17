@@ -12,7 +12,7 @@ import com.ramadhan.couriertracking.data.response.entity.Tracking
 class TrackingViewModel(private val repository: TrackingRepository) : ViewModel() {
 
     private val _trackingData = MutableLiveData<Track<List<Tracking>>>()
-    val trackingTrack: LiveData<Track<List<Tracking>>> = _trackingData
+    val trackingData: LiveData<Track<List<Tracking>>> = _trackingData
 
     private val _isViewLoading = MutableLiveData<Boolean>()
     val isViewLoading: LiveData<Boolean> = _isViewLoading
@@ -42,7 +42,7 @@ class TrackingViewModel(private val repository: TrackingRepository) : ViewModel(
                         if (data.result) {
                             _trackingData.postValue(data.data)
                         } else {
-                            _isNoData.postValue(true)
+                            _onMessageError.postValue(data.message)
                         }
                     } else {
                         _isNoData.postValue(true)

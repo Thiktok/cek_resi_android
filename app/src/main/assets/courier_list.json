@@ -6,7 +6,7 @@
     "available": false
   },
   {
-    "name": "Pos Indonesia",
+    "name": "POS INDONESIA",
     "codename": "pos",
     "img_url": "pos_indonesia",
     "available": true
@@ -18,19 +18,19 @@
     "available": true
   },
   {
-    "name": "Sicepat Ekspres",
+    "name": "SICEPAT EKSPRESS",
     "codename": "sicepat",
     "img_url": "sicepat",
     "available": true
   },
   {
-    "name": "Wahana",
+    "name": "WAHANA",
     "codename": "wahana",
     "img_url": "wahana",
     "available": true
   },
   {
-    "name": "Anteraja",
+    "name": "ANTERAJA",
     "codename": "anteraja",
     "img_url": "anteraja",
     "available": true

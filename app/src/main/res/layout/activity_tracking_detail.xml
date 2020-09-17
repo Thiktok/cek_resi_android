@@ -88,6 +88,7 @@
         tools:listitem="@layout/item_tracking_info" />
 
     <include
+        android:id="@+id/loadingLayout"
         layout="@layout/loading_layout"
         android:visibility="gone" />
 </androidx.constraintlayout.widget.ConstraintLayout>
