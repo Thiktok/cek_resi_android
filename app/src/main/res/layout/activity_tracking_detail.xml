@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
     tools:context="com.ramadhan.couriertracking.view.TrackingDetailActivity">
 
     <com.ramadhan.couriertracking.customview.InfoTextView
         android:id="@+id/trackingDetailCourierName"
+        style="@style/Margin.Default.StartEnd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:labelColor="@android:color/black"
@@ -19,6 +19,7 @@
 
     <com.ramadhan.couriertracking.customview.InfoTextView
         android:id="@+id/trackingDetailAwb"
+        style="@style/Margin.Default.StartEnd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -30,6 +31,7 @@
 
     <com.ramadhan.couriertracking.customview.InfoTextView
         android:id="@+id/trackingDetailStatus"
+        style="@style/Margin.Default.StartEnd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -42,6 +44,7 @@
 
     <com.ramadhan.couriertracking.customview.InfoTextView
         android:id="@+id/trackingDetailSender"
+        style="@style/Margin.Default.StartEnd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -53,6 +56,7 @@
 
     <com.ramadhan.couriertracking.customview.InfoTextView
         android:id="@+id/trackingDetailDestination"
+        style="@style/Margin.Default.StartEnd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -68,6 +72,7 @@
         android:layout_height="2dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
+        style="@style/Margin.Default.StartEnd"
         android:background="@android:color/darker_gray"
         app:layout_constraintBottom_toTopOf="@id/trackingDetailInfo"
         app:layout_constraintTop_toBottomOf="@id/trackingDetailDestination" />
@@ -82,4 +87,7 @@
         app:layout_constraintTop_toBottomOf="@id/trackingDetailDestination"
         tools:listitem="@layout/item_tracking_info" />
 
+    <include
+        layout="@layout/loading_layout"
+        android:visibility="gone" />
 </androidx.constraintlayout.widget.ConstraintLayout>
