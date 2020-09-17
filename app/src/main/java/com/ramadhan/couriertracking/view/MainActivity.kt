@@ -17,6 +17,9 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private lateinit var courierAdapter: CourierSpinnerAdapter
     private lateinit var courierList: List<Courier>
+    private lateinit var spinner: Spinner
+
+    private var courierName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,14 +29,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
         setupUI()
 
+        onAction()
     }
 
     private fun setupUI() {
         courierList = readFromAsset()
         courierAdapter = CourierSpinnerAdapter(this, courierList)
         mainCourierList.adapter = courierAdapter
-
-        val spinner: Spinner = findViewById(R.id.mainCourierList)
+        spinner = findViewById(R.id.mainCourierList)
         spinner.onItemSelectedListener = this
     }
 
@@ -50,19 +53,20 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
         val gson = Gson()
 
-        return gson.fromJson(jsonString, Array<Courier>::class.java).toList()
+        return gson.fromJson(jsonString, Array<Courier>::class.java).toList().filter {
+            it.available
+        }
     }
 
+    @Suppress("DEPRECATION")
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val selectedItem = parent?.getItemAtPosition(position) as Courier
-        Toast.makeText(
-            this,
-            "Selected item is ${selectedItem.name}",
-            Toast.LENGTH_SHORT
-        ).show()
+        courierName = selectedItem.code
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {
+    override fun onNothingSelected(parent: AdapterView<*>?) {}
 
+    private fun onAction() {
+        
     }
 }

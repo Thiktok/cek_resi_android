@@ -28,20 +28,21 @@ class CourierSpinnerAdapter(context: Context, dataSource: List<Courier>) :
         val view = recycledView ?: LayoutInflater.from(context)
             .inflate(R.layout.item_courier, parent, false)
 
-        val imgId = context.resources.getIdentifier(courier?.imgUrl, "drawable", context.packageName)
+        val imgId =
+            context.resources.getIdentifier(courier?.imgUrl, "drawable", context.packageName)
 
 
         if (courier != null) {
             view.courierItemName.text = courier.name
             view.courierItemIcon.setImageResource(imgId)
-            if(!courier.available){
+            if (!courier.available) {
                 val bgColor: Int
                 val txtColor: Int
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                     bgColor = context.getColor(R.color.colorAccent)
                     txtColor = context.getColor(R.color.red)
 
-                }else{
+                } else {
                     bgColor = parent.resources.getColor(R.color.colorAccent)
                     txtColor = parent.resources.getColor(R.color.red)
                 }
