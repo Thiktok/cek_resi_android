@@ -2,36 +2,43 @@
   {
     "name": "JNE",
     "codename": "jne",
-    "img_url": "jne"
+    "img_url": "jne",
+    "available": false
   },
   {
     "name": "Pos Indonesia",
     "codename": "pos",
-    "img_url": "pos_indonesia"
+    "img_url": "pos_indonesia",
+    "available": true
   },
   {
     "name": "TIKI",
     "codename": "tiki",
-    "img_url": "tiki"
+    "img_url": "tiki",
+    "available": true
   },
   {
     "name": "Sicepat Ekspres",
     "codename": "sicepat",
-    "img_url": "sicepat"
+    "img_url": "sicepat",
+    "available": true
   },
   {
     "name": "Wahana",
     "codename": "wahana",
-    "img_url": "wahana"
+    "img_url": "wahana",
+    "available": true
   },
   {
     "name": "Anteraja",
     "codename": "anteraja",
-    "img_url": "anteraja"
+    "img_url": "anteraja",
+    "available": true
   },
   {
     "name": "Ninja Xpress",
     "codename": "ninja",
-    "img_url": "ninja_xpress"
+    "img_url": "ninja_xpress",
+    "available": true
   }
 ]

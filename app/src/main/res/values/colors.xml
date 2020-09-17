@@ -7,5 +7,6 @@
     <color name="greenSea">#16a085</color>
     <color name="nephritis">#27ae60</color>
     <color name="emerald">#2ecc71</color>
+    <color name="red">#c62828</color>
     <color name="defaultTextColor">#000000</color>
 </resources>

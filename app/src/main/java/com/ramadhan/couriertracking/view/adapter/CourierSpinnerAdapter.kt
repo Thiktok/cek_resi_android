@@ -1,6 +1,7 @@
 package com.ramadhan.couriertracking.view.adapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ class CourierSpinnerAdapter(context: Context, dataSource: List<Courier>) :
         return this.createView(position, convertView, parent)
     }
 
+    @Suppress("DEPRECATION")
     private fun createView(position: Int, recycledView: View?, parent: ViewGroup): View {
         val courier = getItem(position)
 
@@ -28,8 +30,25 @@ class CourierSpinnerAdapter(context: Context, dataSource: List<Courier>) :
 
         val imgId = context.resources.getIdentifier(courier?.imgUrl, "drawable", context.packageName)
 
-        view.courierItemName.text = courier?.name
-        view.courierItemIcon.setImageResource(imgId)
+
+        if (courier != null) {
+            view.courierItemName.text = courier.name
+            view.courierItemIcon.setImageResource(imgId)
+            if(!courier.available){
+                val bgColor: Int
+                val txtColor: Int
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+                    bgColor = context.getColor(R.color.colorAccent)
+                    txtColor = context.getColor(R.color.red)
+
+                }else{
+                    bgColor = parent.resources.getColor(R.color.colorAccent)
+                    txtColor = parent.resources.getColor(R.color.red)
+                }
+                view.setBackgroundColor(bgColor)
+                view.courierItemName.setTextColor(txtColor)
+            }
+        }
 
         return view
     }
