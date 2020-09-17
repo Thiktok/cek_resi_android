@@ -6,19 +6,17 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.data.response.entity.Courier
 import com.ramadhan.couriertracking.view.adapter.CourierSpinnerAdapter
-import com.ramadhan.couriertracking.viewmodel.MainViewModel
+import com.ramadhan.couriertracking.viewmodel.TrackingViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private lateinit var courierAdapter: CourierSpinnerAdapter
     private lateinit var courierList: List<Courier>
-    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

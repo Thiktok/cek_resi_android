@@ -1,6 +1,6 @@
 package com.ramadhan.couriertracking.data.response.entity
 
-data class Data<T>(
+data class Track<T>(
     val courier: String,
     val received: Received,
     val service: String,
