@@ -6,16 +6,36 @@
     android:layout_height="wrap_content"
     android:layout_margin="8dp">
 
+    <LinearLayout
+        android:id="@+id/llImage"
+        android:layout_width="24dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_arrow_down"
+            android:contentDescription="@string/app_name" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/straight_line"/>
+    </LinearLayout>
     <TextView
         android:id="@+id/itemInfoDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawablePadding="8dp"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        app:drawableStartCompat="@drawable/round"
+        android:layout_marginStart="4dp"
         app:layout_constraintBottom_toTopOf="@id/itemInfoDetail"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/llImage"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toLeftOf="@id/itemInfoTime"
         tools:text="12 - January - 2020" />
@@ -24,7 +44,6 @@
         android:id="@+id/itemInfoTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:drawablePadding="8dp"
         android:gravity="end"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@id/itemInfoDate"
@@ -35,17 +54,14 @@
 
     <TextView
         android:id="@+id/itemInfoDetail"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:drawablePadding="14dp"
-        android:paddingStart="7dp"
-        android:paddingEnd="0dp"
         android:gravity="center_vertical"
         android:textColor="@android:color/black"
-        app:drawableStartCompat="@drawable/straight_line"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/itemInfoDate"
         app:layout_constraintTop_toBottomOf="@id/itemInfoDate"
+        app:layout_constraintRight_toRightOf="parent"
         tools:text="Your package received by " />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
