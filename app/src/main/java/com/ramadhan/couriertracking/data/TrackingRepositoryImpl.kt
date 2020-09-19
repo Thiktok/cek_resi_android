@@ -1,10 +1,10 @@
 package com.ramadhan.couriertracking.data
 
-import com.ramadhan.couriertracking.data.response.BaseResponse
-import com.ramadhan.couriertracking.data.response.OperationCallback
+import com.ramadhan.couriertracking.data.network.response.BaseResponse
+import com.ramadhan.couriertracking.data.network.response.OperationCallback
 import com.ramadhan.couriertracking.data.entity.Track
 import com.ramadhan.couriertracking.data.entity.Tracking
-import com.ramadhan.couriertracking.data.rest.ApiClient
+import com.ramadhan.couriertracking.data.network.rest.ApiClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -1,7 +1,7 @@
-package com.ramadhan.couriertracking.data.rest
+package com.ramadhan.couriertracking.data.network.rest
 
 import com.ramadhan.couriertracking.BuildConfig
-import com.ramadhan.couriertracking.data.response.BaseResponse
+import com.ramadhan.couriertracking.data.network.response.BaseResponse
 import com.ramadhan.couriertracking.data.entity.Track
 import com.ramadhan.couriertracking.data.entity.Tracking
 import retrofit2.Call

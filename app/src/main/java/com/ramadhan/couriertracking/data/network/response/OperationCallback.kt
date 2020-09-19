@@ -1,4 +1,4 @@
-package com.ramadhan.couriertracking.data.response
+package com.ramadhan.couriertracking.data.network.response
 
 interface OperationCallback<T> {
     fun onSuccess(data: T?)

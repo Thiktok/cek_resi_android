@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ramadhan.couriertracking.data.TrackingRepository
-import com.ramadhan.couriertracking.data.response.BaseResponse
-import com.ramadhan.couriertracking.data.response.OperationCallback
+import com.ramadhan.couriertracking.data.network.response.BaseResponse
+import com.ramadhan.couriertracking.data.network.response.OperationCallback
 import com.ramadhan.couriertracking.data.entity.Track
 import com.ramadhan.couriertracking.data.entity.Tracking
 

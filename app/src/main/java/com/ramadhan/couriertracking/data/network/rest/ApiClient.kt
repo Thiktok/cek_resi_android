@@ -1,4 +1,4 @@
-package com.ramadhan.couriertracking.data.rest
+package com.ramadhan.couriertracking.data.network.rest
 
 import com.ramadhan.couriertracking.BuildConfig
 import okhttp3.OkHttpClient
