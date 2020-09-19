@@ -3,15 +3,19 @@ package com.ramadhan.couriertracking.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.data.response.entity.Courier
 import com.ramadhan.couriertracking.data.response.entity.Track
 import com.ramadhan.couriertracking.data.response.entity.Tracking
 import com.ramadhan.couriertracking.utils.Injector
+import com.ramadhan.couriertracking.view.adapter.TrackingRecyclerViewAdapter
 import com.ramadhan.couriertracking.viewmodel.TrackingViewModel
 import kotlinx.android.synthetic.main.activity_tracking_detail.*
 
@@ -22,6 +26,8 @@ class TrackingDetailActivity : AppCompatActivity() {
     }
 
     private lateinit var viewModel: TrackingViewModel
+    private lateinit var trackingListAdapter: TrackingRecyclerViewAdapter
+    private var trackingList: List<Tracking>? = null
     private var courierData: Courier? = null
     private var awbData: String? = null
 
@@ -47,6 +53,7 @@ class TrackingDetailActivity : AppCompatActivity() {
         courierData = intent.getParcelableExtra(COURIER_NAME)
         awbData = intent.getStringExtra(AWB_NUMBER)
 
+
     }
 
     private fun setupUI() {
@@ -57,10 +64,20 @@ class TrackingDetailActivity : AppCompatActivity() {
         viewModel.isViewLoading.observe(this, loadingObserver)
         viewModel.isNoData.observe(this, noDataObserver)
         viewModel.onMessageError.observe(this, onMessageErrorObserver)
+
+        val llManager = LinearLayoutManager(this)
+        trackingListAdapter = TrackingRecyclerViewAdapter(this, ArrayList())
+
+        trackingDetailInfo.apply {
+            layoutManager = llManager
+            adapter = trackingListAdapter
+        }
     }
 
     private val trackingObserver = Observer<Track<List<Tracking>>> {
-        trackingDetailCourierName.setValueText(it.courier)
+        trackingListAdapter.updateItem(it.tracking)
+
+        trackingDetailCourierName.setValueText(getString(R.string.courier_value, it.courier, it.service))
         trackingDetailAwb.setValueText(it.waybill)
         trackingDetailStatus.setValueText(it.status)
         trackingDetailSender.setValueText("${it.shipped.name}\n${it.shipped.addr}")
