@@ -9,7 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.ramadhan.couriertracking.R
-import com.ramadhan.couriertracking.data.response.entity.Courier
+import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.AWB_NUMBER
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.COURIER_NAME
 import com.ramadhan.couriertracking.view.adapter.CourierSpinnerAdapter

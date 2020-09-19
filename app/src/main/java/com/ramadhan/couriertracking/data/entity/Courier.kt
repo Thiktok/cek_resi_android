@@ -1,4 +1,4 @@
-package com.ramadhan.couriertracking.data.response.entity
+package com.ramadhan.couriertracking.data.entity
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

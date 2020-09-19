@@ -1,4 +1,4 @@
-package com.ramadhan.couriertracking.data.response.entity
+package com.ramadhan.couriertracking.data.entity
 
 data class Track<T>(
     val courier: String,

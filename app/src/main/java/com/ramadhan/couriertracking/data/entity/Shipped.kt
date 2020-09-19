@@ -1,4 +1,4 @@
-package com.ramadhan.couriertracking.data.response.entity
+package com.ramadhan.couriertracking.data.entity
 
 data class Shipped(
     val addr: String,

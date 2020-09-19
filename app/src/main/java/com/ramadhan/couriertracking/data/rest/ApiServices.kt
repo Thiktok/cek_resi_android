@@ -2,8 +2,8 @@ package com.ramadhan.couriertracking.data.rest
 
 import com.ramadhan.couriertracking.BuildConfig
 import com.ramadhan.couriertracking.data.response.BaseResponse
-import com.ramadhan.couriertracking.data.response.entity.Track
-import com.ramadhan.couriertracking.data.response.entity.Tracking
+import com.ramadhan.couriertracking.data.entity.Track
+import com.ramadhan.couriertracking.data.entity.Tracking
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -1,13 +1,12 @@
 package com.ramadhan.couriertracking.view.adapter
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.ramadhan.couriertracking.R
-import com.ramadhan.couriertracking.data.response.entity.Courier
+import com.ramadhan.couriertracking.data.entity.Courier
 import kotlinx.android.synthetic.main.item_courier.view.*
 
 class CourierSpinnerAdapter(context: Context, dataSource: List<Courier>) :

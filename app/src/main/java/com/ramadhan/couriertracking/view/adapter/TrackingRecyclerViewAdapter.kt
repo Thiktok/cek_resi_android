@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadhan.couriertracking.R
-import com.ramadhan.couriertracking.data.response.entity.Tracking
+import com.ramadhan.couriertracking.data.entity.Tracking
 import kotlinx.android.synthetic.main.item_tracking_info.view.*
 
 class TrackingRecyclerViewAdapter(
@@ -34,15 +34,18 @@ class TrackingRecyclerViewAdapter(
 
     fun addItem(tracking: Tracking){
         trackingList.add(tracking)
+        notifyDataSetChanged()
     }
 
     fun addItems(tracking: List<Tracking>){
         trackingList.addAll(tracking)
+        notifyDataSetChanged()
     }
 
     fun updateItem(tracking: List<Tracking>){
         trackingList.clear()
         trackingList.addAll(tracking)
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
