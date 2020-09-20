@@ -60,6 +60,7 @@ class TrackingDetailActivity : AppCompatActivity() {
         viewModel.isViewLoading.observe(this, loadingObserver)
         viewModel.isNoData.observe(this, noDataObserver)
         viewModel.onMessageError.observe(this, onMessageErrorObserver)
+        viewModel.isSuccessful.observe(this, onSuccessObserver)
 
         val llManager = LinearLayoutManager(this)
         trackingListAdapter = TrackingRecyclerViewAdapter(this, ArrayList())
@@ -84,6 +85,16 @@ class TrackingDetailActivity : AppCompatActivity() {
         trackingDetailStatus.setValueText(it.status)
         trackingDetailSender.setValueText("${it.shipped.name}\n${it.shipped.addr}")
         trackingDetailDestination.setValueText("${it.received.name}\n${it.received.addr}")
+
+
+    }
+
+    private val onSuccessObserver = Observer<Boolean> {
+        if (it){
+            if (awbData != null && courierData != null) {
+                viewModel.saveAsHistory(awbData!!, courierData!!)
+            }
+        }
     }
 
     private val loadingObserver = Observer<Boolean> {

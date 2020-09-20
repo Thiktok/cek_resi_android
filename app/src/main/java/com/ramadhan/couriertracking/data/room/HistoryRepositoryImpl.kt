@@ -18,7 +18,7 @@ class HistoryRepositoryImpl(context: Context) : HistoryRepository {
         return historyDao.getHistories()
     }
 
-    override fun getHistory(awb: String): History {
+    override fun getHistory(awb: String): LiveData<History> {
         return historyDao.getHistory(awb)
     }
 
