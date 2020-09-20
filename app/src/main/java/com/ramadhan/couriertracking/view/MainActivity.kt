@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -87,14 +88,24 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private fun onAction() {
         mainButtonSearch.setOnClickListener {
             if (mainAWBInput.text.isNotEmpty()) {
-                val intent = Intent(this, TrackingDetailActivity::class.java)
-                intent.putExtra(COURIER_NAME, courierData)
-                intent.putExtra(AWB_NUMBER, mainAWBInput.text.toString())
-                startActivity(intent)
+                courierData?.let { it1 -> goToTracking(mainAWBInput.text.toString(), it1) }
             } else {
                 showAlertDialog("Masukkan resi terlebih dahulu")
             }
         }
+
+        historyAdapter.setOnItemClickListener(object : HistoryAdapter.OnItemClickListener{
+            override fun onItemClick(view: View?, position: Int) {
+                goToTracking(historyAdapter.getData(position).awb, historyAdapter.getData(position).courier)
+            }
+        })
+    }
+
+    private fun goToTracking(awb: String, courier: Courier){
+        val intent = Intent(this, TrackingDetailActivity::class.java)
+        intent.putExtra(COURIER_NAME, courier)
+        intent.putExtra(AWB_NUMBER, awb)
+        startActivity(intent)
     }
 
     private val historyObserver = Observer<List<History>>{

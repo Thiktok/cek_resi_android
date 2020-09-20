@@ -11,9 +11,12 @@ import kotlinx.android.synthetic.main.item_history.view.*
 class HistoryAdapter(private val histories: MutableList<History>) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
+    private var itemClickListener: OnItemClickListener? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryAdapter.ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_history, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_history, parent, false),
+            itemClickListener
         )
     }
 
@@ -26,19 +29,38 @@ class HistoryAdapter(private val histories: MutableList<History>) :
         return histories.size
     }
 
-    fun addList(list: List<History>){
+    fun getData(position: Int): History = histories[position]
+
+    fun addList(list: List<History>) {
         histories.clear()
         histories.addAll(list)
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    fun setOnItemClickListener(itemClickListener: OnItemClickListener) {
+        this.itemClickListener = itemClickListener
+    }
+
+    inner class ViewHolder(itemView: View, private val itemClick: OnItemClickListener?) :
+        RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+        init {
+            itemView.setOnClickListener(this)
+        }
 
         fun bind(history: History) {
             itemView.historyTitle.text = history.title ?: history.awb
             itemView.historyAWB.text = history.awb
             itemView.historyCourier.text = history.courier.name
         }
+
+        override fun onClick(v: View?) {
+            itemClick?.onItemClick(v, adapterPosition)
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(view: View?, position: Int)
     }
 
 }
