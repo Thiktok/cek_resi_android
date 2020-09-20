@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import com.bumptech.glide.Glide
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.data.entity.Courier
 import kotlinx.android.synthetic.main.item_courier.view.*
@@ -33,21 +34,7 @@ class CourierSpinnerAdapter(context: Context, dataSource: List<Courier>) :
 
         if (courier != null) {
             view.courierItemName.text = courier.name
-            view.courierItemIcon.setImageResource(imgId)
-            if (!courier.available) {
-                val bgColor: Int
-                val txtColor: Int
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-                    bgColor = context.getColor(R.color.colorAccent)
-                    txtColor = context.getColor(R.color.red)
-
-                } else {
-                    bgColor = parent.resources.getColor(R.color.colorAccent)
-                    txtColor = parent.resources.getColor(R.color.red)
-                }
-                view.setBackgroundColor(bgColor)
-                view.courierItemName.setTextColor(txtColor)
-            }
+            Glide.with(view).load(imgId).into(view.courierItemIcon)
         }
 
         return view

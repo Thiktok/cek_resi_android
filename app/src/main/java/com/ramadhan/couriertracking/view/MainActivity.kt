@@ -7,16 +7,21 @@ import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.data.entity.Courier
+import com.ramadhan.couriertracking.utils.Injector
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.AWB_NUMBER
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.COURIER_NAME
 import com.ramadhan.couriertracking.view.adapter.CourierSpinnerAdapter
+import com.ramadhan.couriertracking.viewmodel.MainViewModel
+import com.ramadhan.couriertracking.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
+    private lateinit var viewModel: MainViewModel
     private lateinit var courierAdapter: CourierSpinnerAdapter
     private lateinit var courierList: List<Courier>
     private lateinit var spinner: Spinner
@@ -43,6 +48,13 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun setupLib() {
+        viewModel = ViewModelProvider(
+            this,
+            ViewModelFactory(
+                Injector.provideRemoteRepository(),
+                Injector.provideHistoryRepository()
+            )
+        ).get(MainViewModel::class.java)
     }
 
     private fun readFromAsset(): List<Courier> {

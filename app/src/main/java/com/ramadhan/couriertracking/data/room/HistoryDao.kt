@@ -10,8 +10,14 @@ interface HistoryDao {
     fun insert(history: History)
 
     @Query("SELECT * FROM search_history WHERE awb = :awb")
-    fun getHistory(awb: String): LiveData<History>
+    fun getHistory(awb: String): History
 
-    @Delete
-    fun deleteHistory(id: Int)
+    @Query("SELECT * FROM search_history")
+    fun getHistories(): LiveData<List<History>>
+
+    @Query("DELETE FROM search_history WHERE awb = :awb")
+    fun deleteHistory(awb: String)
+
+    @Query("DELETE FROM search_history")
+    fun deleteHistories()
 }

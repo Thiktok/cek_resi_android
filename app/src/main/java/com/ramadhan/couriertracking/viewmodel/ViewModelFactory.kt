@@ -2,12 +2,29 @@ package com.ramadhan.couriertracking.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ramadhan.couriertracking.data.TrackingRepository
+import com.ramadhan.couriertracking.data.network.TrackingRemoteRepository
+import com.ramadhan.couriertracking.data.room.HistoryRepository
+import java.lang.IllegalArgumentException
 
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory(private val repository: TrackingRepository) : ViewModelProvider.Factory {
+class ViewModelFactory(
+    private val remoteRepository: TrackingRemoteRepository,
+    private val historyRepository: HistoryRepository
+) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return TrackingViewModel(repository) as T
+        return when {
+            modelClass.isAssignableFrom(TrackingViewModel::class.java) -> TrackingViewModel(
+                remoteRepository
+            ) as T
+
+            modelClass.isAssignableFrom(MainViewModel::class.java) -> MainViewModel(
+                historyRepository
+            ) as T
+
+            else -> throw IllegalArgumentException("Unknown ViewModel Class ${modelClass::class.java.simpleName}")
+        }
     }
+
+
 }

@@ -1,11 +1,11 @@
-package com.ramadhan.couriertracking.data
+package com.ramadhan.couriertracking.data.network
 
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
 import com.ramadhan.couriertracking.data.network.response.OperationCallback
 import com.ramadhan.couriertracking.data.entity.Track
 import com.ramadhan.couriertracking.data.entity.Tracking
 
-interface TrackingRepository {
+interface TrackingRemoteRepository {
 
     fun retrieveTrackingData(
         awb: String,

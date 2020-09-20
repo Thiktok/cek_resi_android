@@ -36,6 +36,12 @@
     "available": true
   },
   {
+    "name": "J&T Express",
+    "codename": "jnt",
+    "img_url": "jnt",
+    "available": true
+  },
+  {
     "name": "Ninja Xpress",
     "codename": "ninja",
     "img_url": "ninja_xpress",

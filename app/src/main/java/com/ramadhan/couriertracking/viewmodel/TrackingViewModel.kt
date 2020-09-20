@@ -3,13 +3,13 @@ package com.ramadhan.couriertracking.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.ramadhan.couriertracking.data.TrackingRepository
+import com.ramadhan.couriertracking.data.network.TrackingRemoteRepository
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
 import com.ramadhan.couriertracking.data.network.response.OperationCallback
 import com.ramadhan.couriertracking.data.entity.Track
 import com.ramadhan.couriertracking.data.entity.Tracking
 
-class TrackingViewModel(private val repository: TrackingRepository) : ViewModel() {
+class TrackingViewModel(private val repository: TrackingRemoteRepository) : ViewModel() {
 
     private val _trackingData = MutableLiveData<Track<List<Tracking>>>()
     val trackingData: LiveData<Track<List<Tracking>>> = _trackingData

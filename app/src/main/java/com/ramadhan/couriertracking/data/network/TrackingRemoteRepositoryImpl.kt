@@ -1,4 +1,4 @@
-package com.ramadhan.couriertracking.data
+package com.ramadhan.couriertracking.data.network
 
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
 import com.ramadhan.couriertracking.data.network.response.OperationCallback
@@ -9,7 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class TrackingRepositoryImpl : TrackingRepository {
+class TrackingRemoteRepositoryImpl : TrackingRemoteRepository {
     private var call: Call<BaseResponse<Track<List<Tracking>>>>? = null
 
     override fun retrieveTrackingData(
