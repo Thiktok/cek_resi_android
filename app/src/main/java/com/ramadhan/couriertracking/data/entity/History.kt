@@ -9,6 +9,6 @@ data class History(
     @PrimaryKey(autoGenerate = false)
     val awb: String,
     @Embedded(prefix = "courier_")
-    val courierName: Courier,
+    val courier: Courier,
     val title: String? = null
 )

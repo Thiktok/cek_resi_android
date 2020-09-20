@@ -15,7 +15,7 @@ class ViewModelFactory(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(TrackingViewModel::class.java) -> TrackingViewModel(
-                remoteRepository
+                remoteRepository, historyRepository
             ) as T
 
             modelClass.isAssignableFrom(MainViewModel::class.java) -> MainViewModel(
