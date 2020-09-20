@@ -14,6 +14,7 @@ import com.ramadhan.couriertracking.data.entity.Tracking
 import com.ramadhan.couriertracking.utils.Injector
 import com.ramadhan.couriertracking.view.adapter.TrackingRecyclerViewAdapter
 import com.ramadhan.couriertracking.viewmodel.TrackingViewModel
+import com.ramadhan.couriertracking.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_tracking_detail.*
 
 class TrackingDetailActivity : AppCompatActivity() {
@@ -49,8 +50,6 @@ class TrackingDetailActivity : AppCompatActivity() {
 
         courierData = intent.getParcelableExtra(COURIER_NAME)
         awbData = intent.getStringExtra(AWB_NUMBER)
-
-
     }
 
     private fun setupUI() {
@@ -74,7 +73,13 @@ class TrackingDetailActivity : AppCompatActivity() {
     private val trackingObserver = Observer<Track<List<Tracking>>> {
         trackingListAdapter.updateItem(it.tracking)
 
-        trackingDetailCourierName.setValueText(getString(R.string.courier_value, it.courier, it.service))
+        trackingDetailCourierName.setValueText(
+            getString(
+                R.string.courier_value,
+                it.courier,
+                it.service
+            )
+        )
         trackingDetailAwb.setValueText(it.waybill)
         trackingDetailStatus.setValueText(it.status)
         trackingDetailSender.setValueText("${it.shipped.name}\n${it.shipped.addr}")

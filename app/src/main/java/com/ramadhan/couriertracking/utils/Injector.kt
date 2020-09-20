@@ -12,7 +12,7 @@ import com.ramadhan.couriertracking.viewmodel.ViewModelFactory
 
 object Injector {
     private val trackingRemoteRepository: TrackingRemoteRepository = TrackingRemoteRepositoryImpl()
-    private val viewModelProvider = ViewModelFactory(trackingRemoteRepository, historyRepository)
+    private lateinit var viewModelProvider:ViewModelFactory
 
     private lateinit var historyRepository: HistoryRepository
 
@@ -20,15 +20,16 @@ object Injector {
         historyRepository = HistoryRepositoryImpl(context)
     }
 
-    fun provideRemoteRepository(): TrackingRemoteRepository {
+    private fun provideRemoteRepository(): TrackingRemoteRepository {
         return trackingRemoteRepository
     }
 
-    fun provideHistoryRepository(): HistoryRepository {
+    private fun provideHistoryRepository(): HistoryRepository {
         return historyRepository
     }
 
     fun provideViewModelFactory(): ViewModelProvider.Factory{
+        viewModelProvider = ViewModelFactory(provideRemoteRepository(), provideHistoryRepository())
         return viewModelProvider
     }
 }

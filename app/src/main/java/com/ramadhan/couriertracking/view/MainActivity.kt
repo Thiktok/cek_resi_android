@@ -50,10 +50,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private fun setupLib() {
         viewModel = ViewModelProvider(
             this,
-            ViewModelFactory(
-                Injector.provideRemoteRepository(),
-                Injector.provideHistoryRepository()
-            )
+            Injector.provideViewModelFactory()
         ).get(MainViewModel::class.java)
     }
 
