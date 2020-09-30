@@ -16,4 +16,6 @@
     <string name="ok_button">Ok</string>
     <string name="cancel_button">Cancel</string>
     <string name="history">History</string>
+    <string name="delete">Delete</string>
+    <string name="change_title">Change Title</string>
 </resources>

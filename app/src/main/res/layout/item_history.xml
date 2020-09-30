@@ -41,10 +41,12 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Placeholder for courier" />
 
-    <ImageView
-        android:layout_width="24dp"
-        android:layout_height="match_parent"
+    <ImageButton
+        android:id="@+id/historyMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/ic_more"
+        android:background="@null"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:contentDescription="@string/app_name" />

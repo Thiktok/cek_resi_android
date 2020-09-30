@@ -1,8 +1,11 @@
 package com.ramadhan.couriertracking.view.adapter
 
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.data.entity.History
@@ -23,6 +26,21 @@ class HistoryAdapter(private val histories: MutableList<History>) :
     override fun onBindViewHolder(holder: HistoryAdapter.ViewHolder, position: Int) {
         val item = histories[position]
         holder.bind(item)
+
+        holder.moreMenu.setOnClickListener {
+            val popUpMenu = PopupMenu(it.context, holder.moreMenu)
+
+            popUpMenu.inflate(R.menu.history_menu)
+            popUpMenu.setOnMenuItemClickListener { item ->
+                when (item?.itemId) {
+                    R.id.deleteHistory -> true
+                    R.id.setHistoryTitle -> true
+                    else -> false
+                }
+            }
+
+            popUpMenu.show()
+        }
     }
 
     override fun getItemCount(): Int {
@@ -43,6 +61,8 @@ class HistoryAdapter(private val histories: MutableList<History>) :
 
     inner class ViewHolder(itemView: View, private val itemClick: OnItemClickListener?) :
         RecyclerView.ViewHolder(itemView), View.OnClickListener {
+        
+        val moreMenu: ImageButton = itemView.historyMore
 
         init {
             itemView.setOnClickListener(this)
