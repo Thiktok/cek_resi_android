@@ -100,7 +100,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
 
             override fun onDeleteMenuClick(position: Int) {
-                Toast.makeText(this@MainActivity, "Delete ${historyAdapter.getData(position).awb}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, "Delete ${historyAdapter.getData(position).title}", Toast.LENGTH_SHORT).show()
+                viewModel.deleteHistory(historyAdapter.getData(position).awb)
             }
 
             override fun onEditMenuClick(position: Int) {

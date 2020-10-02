@@ -53,7 +53,12 @@ class TrackingRecyclerViewAdapter(
         fun bindItem(tracking: Tracking) {
             itemView.itemInfoDate.text = tracking.date.subSequence(0, 10)
             itemView.itemInfoTime.text = tracking.date.drop(10)
-            itemView.itemInfoDetail.text = tracking.desc
+            if (tracking.status.isNullOrEmpty()){
+                itemView.itemInfoDetail.text = tracking.desc
+            }else{
+                itemView.itemInfoDetail.text = itemView.context.getString(R.string.tracking_detail, tracking.desc, tracking.status)
+            }
+
         }
     }
 }

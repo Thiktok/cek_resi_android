@@ -2,6 +2,7 @@ package com.ramadhan.couriertracking.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
@@ -73,24 +74,42 @@ class TrackingDetailActivity : AppCompatActivity() {
 
     private val trackingObserver = Observer<Track<List<Tracking>>> {
         trackingListAdapter.updateItem(it.tracking)
-
-        trackingDetailCourierName.setValueText(
-            getString(
+        trackingDetailAwb.setValueText(it.waybill)
+        val courierDetail: String?
+        val detailStatus: String?
+        val detailSender: String?
+        val detailReceiver: String?
+        Log.d("tracking", "${it.detail}")
+        if (it.detail != null) {
+            courierDetail = getString(
+                R.string.courier_value,
+                it.courier,
+                it.detail?.service
+            )
+            detailStatus = it.detail?.status
+            detailSender = "${it.detail?.shipper}\n${it.detail?.origin}"
+            detailReceiver = "${it.detail?.receiver}\n${it.detail?.destination}"
+        } else {
+            courierDetail = getString(
                 R.string.courier_value,
                 it.courier,
                 it.service
             )
-        )
-        trackingDetailAwb.setValueText(it.waybill)
-        trackingDetailStatus.setValueText(it.status)
-        trackingDetailSender.setValueText("${it.shipped.name}\n${it.shipped.addr}")
-        trackingDetailDestination.setValueText("${it.received.name}\n${it.received.addr}")
+            detailStatus = it.status
+            detailSender = "${it.shipped?.name}\n${it.shipped?.addr}"
+            detailReceiver = "${it.received?.name}\n${it.received?.addr}"
+        }
+
+        trackingDetailCourierName.setValueText(courierDetail)
+        trackingDetailStatus.setValueText(detailStatus)
+        trackingDetailSender.setValueText(detailSender)
+        trackingDetailDestination.setValueText(detailReceiver)
 
 
     }
 
     private val onSuccessObserver = Observer<Boolean> {
-        if (it){
+        if (it) {
             if (awbData != null && courierData != null) {
                 viewModel.saveAsHistory(awbData!!, courierData!!)
             }
