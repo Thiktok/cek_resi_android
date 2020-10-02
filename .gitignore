@@ -13,3 +13,4 @@
 /captures
 .externalNativeBuild
 .cxx
+/app/src/main/java/com/ramadhan/couriertracking/utils/ServiceData.kt
