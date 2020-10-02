@@ -1,6 +1,7 @@
 package com.ramadhan.couriertracking.data.network.rest
 
 import com.ramadhan.couriertracking.BuildConfig
+import com.ramadhan.couriertracking.utils.ServiceData
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -21,7 +22,7 @@ object ApiClient {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(ServiceData.BASE_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
