@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private val historyObserver = Observer<List<History>>{
-        historyAdapter.addList(it)
+        historyAdapter.addList(it.reversed())
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

@@ -3,7 +3,7 @@
     "name": "JNE",
     "codename": "jne",
     "img_url": "jne",
-    "available": false
+    "available": true
   },
   {
     "name": "POS INDONESIA",
@@ -33,13 +33,13 @@
     "name": "ANTERAJA",
     "codename": "anteraja",
     "img_url": "anteraja",
-    "available": true
+    "available": false
   },
   {
     "name": "J&T Express",
     "codename": "jnt",
     "img_url": "jnt",
-    "available": true
+    "available": false
   },
   {
     "name": "Ninja Xpress",
