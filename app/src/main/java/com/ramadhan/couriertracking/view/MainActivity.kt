@@ -98,6 +98,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             override fun onItemClick(view: View?, position: Int) {
                 goToTracking(historyAdapter.getData(position).awb, historyAdapter.getData(position).courier)
             }
+
+            override fun onDeleteMenuClick(position: Int) {
+                Toast.makeText(this@MainActivity, "Delete ${historyAdapter.getData(position).awb}", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onEditMenuClick(position: Int) {
+                Toast.makeText(this@MainActivity, "Edit ${historyAdapter.getData(position).awb}", Toast.LENGTH_SHORT).show()
+            }
         })
     }
 

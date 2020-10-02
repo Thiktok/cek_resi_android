@@ -33,8 +33,14 @@ class HistoryAdapter(private val histories: MutableList<History>) :
             popUpMenu.inflate(R.menu.history_menu)
             popUpMenu.setOnMenuItemClickListener { item ->
                 when (item?.itemId) {
-                    R.id.deleteHistory -> true
-                    R.id.setHistoryTitle -> true
+                    R.id.deleteHistory -> {
+                        itemClickListener?.onDeleteMenuClick(position)
+                        true
+                    }
+                    R.id.setHistoryTitle -> {
+                        itemClickListener?.onEditMenuClick(position)
+                        true
+                    }
                     else -> false
                 }
             }
@@ -61,7 +67,7 @@ class HistoryAdapter(private val histories: MutableList<History>) :
 
     inner class ViewHolder(itemView: View, private val itemClick: OnItemClickListener?) :
         RecyclerView.ViewHolder(itemView), View.OnClickListener {
-        
+
         val moreMenu: ImageButton = itemView.historyMore
 
         init {
@@ -81,6 +87,8 @@ class HistoryAdapter(private val histories: MutableList<History>) :
 
     interface OnItemClickListener {
         fun onItemClick(view: View?, position: Int)
+        fun onDeleteMenuClick(position: Int)
+        fun onEditMenuClick(position: Int)
     }
 
 }
