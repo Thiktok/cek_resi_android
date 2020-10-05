@@ -1,6 +1,7 @@
 package com.ramadhan.couriertracking.data.network.rest
 
 import com.ramadhan.couriertracking.data.entity.Track
+import com.ramadhan.couriertracking.data.entity.TrackData
 import com.ramadhan.couriertracking.data.entity.Tracking
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
 import com.ramadhan.couriertracking.utils.ServiceData
@@ -15,4 +16,11 @@ interface ApiServices {
         @Query("api_key") api_key: String = ServiceData.API_KEY,
         @Query("courier") courier: String
     ): Call<BaseResponse<Track<List<Tracking>>>>
+
+    @GET("track?")
+    fun getTrackingNew(
+        @Query("awb") awb: String,
+        @Query("api_key") api_key: String,
+        @Query("courier") courier: String
+    ): Call<BaseResponse<TrackData>>
 }
