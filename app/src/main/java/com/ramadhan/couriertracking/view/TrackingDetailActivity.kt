@@ -72,7 +72,9 @@ class TrackingDetailActivity : AppCompatActivity() {
     }
 
     private val trackingObserver = Observer<TrackData> { data ->
-        trackingListAdapter.updateItem(data.track)
+        trackingListAdapter.updateItem(data.track.filter {
+            it.desc.isNotEmpty()
+        })
         trackingDetailAwb.setValueText(data.summary.awb)
         val courierDetail =
             getString(R.string.courier_value, data.summary.courier, data.summary.service)
