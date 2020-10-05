@@ -13,7 +13,7 @@
     <string name="courier_value">%s | %s</string>
     <string name="tracking_detail">%s, %s</string>
     <string name="courier_unavailable">%1$s | %2$s</string>
-    <string name="alert_title">Alert!!</string>
+    <string name="alert_title">Oops !!</string>
     <string name="ok_button">Ok</string>
     <string name="cancel_button">Cancel</string>
     <string name="history">History</string>

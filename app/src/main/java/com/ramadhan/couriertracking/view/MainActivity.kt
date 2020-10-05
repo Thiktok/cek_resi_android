@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.ramadhan.couriertracking.R
@@ -59,6 +60,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             layoutManager = llManager
             adapter = historyAdapter
         }
+            .addItemDecoration(DividerItemDecoration(this, llManager.orientation))
     }
 
     private fun setupLib() {
@@ -94,30 +96,42 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
         }
 
-        historyAdapter.setOnItemClickListener(object : HistoryAdapter.OnItemClickListener{
+        historyAdapter.setOnItemClickListener(object : HistoryAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, position: Int) {
-                goToTracking(historyAdapter.getData(position).awb, historyAdapter.getData(position).courier)
+                goToTracking(
+                    historyAdapter.getData(position).awb,
+                    historyAdapter.getData(position).courier
+                )
             }
 
             override fun onDeleteMenuClick(position: Int) {
-                Toast.makeText(this@MainActivity, "Delete ${historyAdapter.getData(position).title}", Toast.LENGTH_SHORT).show()
-                viewModel.deleteHistory(historyAdapter.getData(position).awb)
+                val item = historyAdapter.getData(position)
+                Toast.makeText(
+                    this@MainActivity,
+                    "Delete ${item.title ?: item.awb}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                viewModel.deleteHistory(item.awb)
             }
 
             override fun onEditMenuClick(position: Int) {
-                Toast.makeText(this@MainActivity, "Edit ${historyAdapter.getData(position).awb}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@MainActivity,
+                    "Edit ${historyAdapter.getData(position).awb}",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }
 
-    private fun goToTracking(awb: String, courier: Courier){
+    private fun goToTracking(awb: String, courier: Courier) {
         val intent = Intent(this, TrackingDetailActivity::class.java)
         intent.putExtra(COURIER_NAME, courier)
         intent.putExtra(AWB_NUMBER, awb)
         startActivity(intent)
     }
 
-    private val historyObserver = Observer<List<History>>{
+    private val historyObserver = Observer<List<History>> {
         historyAdapter.addList(it.reversed())
     }
 

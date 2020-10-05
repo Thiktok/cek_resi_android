@@ -37,8 +37,7 @@
         app:layout_constraintBottom_toTopOf="@id/trackingDetailSender"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/trackingDetailAwb"
-        app:textLabel="Status"
-        app:valueColor="@color/colorPrimary" />
+        app:textLabel="Status"/>
 
     <com.ramadhan.couriertracking.customview.InfoTextView
         android:id="@+id/trackingDetailSender"

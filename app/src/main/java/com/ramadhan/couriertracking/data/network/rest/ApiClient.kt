@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 object ApiClient {
 
     private val loggingInterceptor = HttpLoggingInterceptor().apply {
-        this.level = HttpLoggingInterceptor.Level.BODY
+        this.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
     }
 
     fun build(): ApiServices {

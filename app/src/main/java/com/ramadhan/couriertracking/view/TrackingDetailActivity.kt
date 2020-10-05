@@ -1,10 +1,10 @@
 package com.ramadhan.couriertracking.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,7 +25,6 @@ class TrackingDetailActivity : AppCompatActivity() {
 
     private lateinit var viewModel: TrackingViewModel
     private lateinit var trackingListAdapter: TrackingRecyclerViewAdapter
-    private var trackingList: List<Tracking>? = null
     private var courierData: Courier? = null
     private var awbData: String? = null
 
@@ -72,19 +71,21 @@ class TrackingDetailActivity : AppCompatActivity() {
     }
 
     private val trackingObserver = Observer<TrackData> { data ->
-        trackingListAdapter.updateItem(data.track.filter {
-            it.desc.isNotEmpty()
-        })
+        val trackingList: List<Tracking> = data.track.filter { it.desc.isNotEmpty() }
+        trackingListAdapter.updateItem(trackingList)
         trackingDetailAwb.setValueText(data.summary.awb)
         val courierDetail =
             getString(R.string.courier_value, data.summary.courier, data.summary.service)
         val detailStatus = data.summary.status
         val detailSender = "${data.info.shipper}\n${data.info.origin ?: "no information given"}"
         val detailReceiver = "${data.info.receiver}\n${data.info.destination}"
-        Log.d("tracking", "$data")
 
         trackingDetailCourierName.setValueText(courierDetail)
         trackingDetailStatus.setValueText(detailStatus)
+        if (detailStatus.equals("delivered", true)){
+            Log.d("status", "equals delivered")
+            trackingDetailStatus.setValueColor(R.color.greenSea)
+        }
         trackingDetailSender.setValueText(detailSender)
         trackingDetailDestination.setValueText(detailReceiver)
 
