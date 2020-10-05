@@ -10,13 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.data.entity.Courier
-import com.ramadhan.couriertracking.data.entity.Track
 import com.ramadhan.couriertracking.data.entity.TrackData
 import com.ramadhan.couriertracking.data.entity.Tracking
 import com.ramadhan.couriertracking.utils.Injector
 import com.ramadhan.couriertracking.view.adapter.TrackingRecyclerViewAdapter
 import com.ramadhan.couriertracking.viewmodel.TrackingViewModel
-import com.ramadhan.couriertracking.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_tracking_detail.*
 
 class TrackingDetailActivity : AppCompatActivity() {
