@@ -4,21 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ramadhan.couriertracking.data.entity.Courier
-import com.ramadhan.couriertracking.data.entity.History
+import com.ramadhan.couriertracking.data.entity.*
 import com.ramadhan.couriertracking.data.network.TrackingRemoteRepository
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
 import com.ramadhan.couriertracking.data.network.response.OperationCallback
-import com.ramadhan.couriertracking.data.entity.Track
-import com.ramadhan.couriertracking.data.entity.Tracking
 import com.ramadhan.couriertracking.data.room.HistoryRepository
 import kotlinx.coroutines.launch
 
 class TrackingViewModel(private val remoteRepository: TrackingRemoteRepository,
 private val historyRepository: HistoryRepository) : ViewModel() {
 
-    private val _trackingData = MutableLiveData<Track<List<Tracking>>>()
-    val trackingData: LiveData<Track<List<Tracking>>> = _trackingData
+    private val _trackingData = MutableLiveData<TrackData>()
+    val trackingData: LiveData<TrackData> = _trackingData
 
     private val _isViewLoading = MutableLiveData<Boolean>()
     val isViewLoading: LiveData<Boolean> = _isViewLoading
@@ -41,20 +38,20 @@ private val historyRepository: HistoryRepository) : ViewModel() {
     fun getTrackingData(awb: String, courier: String) {
         _isViewLoading.postValue(true)
 
-        remoteRepository.retrieveTrackingData(
+        remoteRepository.retrieveTrackingNew(
             awb,
             courier,
-            object : OperationCallback<BaseResponse<Track<List<Tracking>>>> {
+            object : OperationCallback<BaseResponse<TrackData>> {
                 override fun onError(error: String?) {
                     _isViewLoading.postValue(false)
                     _onMessageError.postValue(error)
                 }
 
-                override fun onSuccess(data: BaseResponse<Track<List<Tracking>>>?) {
+                override fun onSuccess(data: BaseResponse<TrackData>?) {
                     _isViewLoading.postValue(false)
 
                     if (data != null) {
-                        if (data.result) {
+                        if (data.status == 200) {
                             _trackingData.postValue(data.data)
                             _isSuccessful.postValue(true)
                         } else {

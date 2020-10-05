@@ -17,10 +17,10 @@ interface ApiServices {
         @Query("courier") courier: String
     ): Call<BaseResponse<Track<List<Tracking>>>>
 
-    @GET("track?")
+    @GET("track")
     fun getTrackingNew(
-        @Query("awb") awb: String,
         @Query("api_key") api_key: String,
-        @Query("courier") courier: String
+        @Query("courier") courier: String,
+        @Query("awb") awb: String
     ): Call<BaseResponse<TrackData>>
 }

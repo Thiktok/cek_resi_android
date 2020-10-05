@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.data.entity.Track
+import com.ramadhan.couriertracking.data.entity.TrackData
 import com.ramadhan.couriertracking.data.entity.Tracking
 import com.ramadhan.couriertracking.utils.Injector
 import com.ramadhan.couriertracking.view.adapter.TrackingRecyclerViewAdapter
@@ -72,33 +73,15 @@ class TrackingDetailActivity : AppCompatActivity() {
         }
     }
 
-    private val trackingObserver = Observer<Track<List<Tracking>>> {
-        trackingListAdapter.updateItem(it.tracking)
-        trackingDetailAwb.setValueText(it.waybill)
-        val courierDetail: String?
-        val detailStatus: String?
-        val detailSender: String?
-        val detailReceiver: String?
-        Log.d("tracking", "${it.detail}")
-        if (it.detail != null) {
-            courierDetail = getString(
-                R.string.courier_value,
-                it.courier,
-                it.detail?.service
-            )
-            detailStatus = it.detail?.status
-            detailSender = "${it.detail?.shipper}\n${it.detail?.origin}"
-            detailReceiver = "${it.detail?.receiver}\n${it.detail?.destination}"
-        } else {
-            courierDetail = getString(
-                R.string.courier_value,
-                it.courier,
-                it.service
-            )
-            detailStatus = it.status
-            detailSender = "${it.shipped?.name}\n${it.shipped?.addr}"
-            detailReceiver = "${it.received?.name}\n${it.received?.addr}"
-        }
+    private val trackingObserver = Observer<TrackData> { data ->
+        trackingListAdapter.updateItem(data.track)
+        trackingDetailAwb.setValueText(data.summary.awb)
+        val courierDetail =
+            getString(R.string.courier_value, data.summary.courier, data.summary.service)
+        val detailStatus = data.summary.status
+        val detailSender = "${data.info.shipper}\n${data.info.origin ?: "no information given"}"
+        val detailReceiver = "${data.info.receiver}\n${data.info.destination}"
+        Log.d("tracking", "$data")
 
         trackingDetailCourierName.setValueText(courierDetail)
         trackingDetailStatus.setValueText(detailStatus)
