@@ -75,11 +75,11 @@ class TrackingDetailActivity : AppCompatActivity() {
 
     private val trackingObserver = Observer<TrackData> { data ->
         val trackingList: List<Tracking> = data.track.filter { it.desc.isNotEmpty() }
-        trackingListAdapter.updateItem(trackingList.sortedBy { Utils.stringToTime(it.date) })
+        trackingListAdapter.updateItem(trackingList.sortedByDescending { Utils.stringToTime(it.date) })
         trackingDetailAwb.setValueText(data.summary.awb)
         val courierDetail =
             getString(R.string.courier_value, data.summary.courier, data.summary.service)
-        val detailStatus = data.summary.status
+        val detailStatus = if (data.summary.status.isNullOrEmpty()) "on Delivery" else data.summary.status
         val detailSender = if(data.info.shipper.isNullOrEmpty()){
             ""
         }else{

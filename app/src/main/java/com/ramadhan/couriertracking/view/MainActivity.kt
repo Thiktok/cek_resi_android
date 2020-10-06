@@ -1,11 +1,14 @@
 package com.ramadhan.couriertracking.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.IBinder
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
@@ -175,6 +178,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private fun showEditTitleDialog(item: History) {
         val dialog = DialogEditTitle(object : DialogEditTitle.DialogListener {
             override fun onPositiveDialog(text: String?) {
+                hideKeyboard()
                 viewModel.editHistoryTitle(item.awb, text.toString())
             }
         })
@@ -197,5 +201,21 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
         dialogBuilder.show()
+    }
+
+    fun hideKeyboard() {
+        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        var iBinder: IBinder? = null
+        try {
+            iBinder = currentFocus!!.windowToken
+        } catch (e: NullPointerException) {
+            e.printStackTrace()
+        }
+        if (iBinder != null) {
+            inputManager.hideSoftInputFromWindow(
+                iBinder,
+                InputMethodManager.HIDE_NOT_ALWAYS
+            )
+        }
     }
 }
