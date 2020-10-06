@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.ramadhan.couriertracking.R
+import com.ramadhan.couriertracking.customview.DialogEditTitle
 import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.data.entity.History
 import com.ramadhan.couriertracking.utils.Injector
@@ -22,7 +23,6 @@ import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.COURIE
 import com.ramadhan.couriertracking.view.adapter.CourierSpinnerAdapter
 import com.ramadhan.couriertracking.view.adapter.HistoryAdapter
 import com.ramadhan.couriertracking.viewmodel.MainViewModel
-import com.ramadhan.couriertracking.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -115,11 +115,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             }
 
             override fun onEditMenuClick(position: Int) {
-                Toast.makeText(
-                    this@MainActivity,
-                    "Edit ${historyAdapter.getData(position).awb}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showEditTitleDialog(historyAdapter.getData(position))
+//                Toast.makeText(
+//                    this@MainActivity,
+//                    "Edit ${historyAdapter.getData(position).awb}",
+//                    Toast.LENGTH_SHORT
+//                ).show()
             }
         })
     }
@@ -140,6 +141,21 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+    private fun showEditTitleDialog(item: History) {
+        val dialog = DialogEditTitle(object : DialogEditTitle.DialogListener {
+            override fun onPositiveDialog(text: String?) {
+                viewModel.editHistoryTitle(item.awb, text.toString())
+            }
+        })
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        val prevDialog = supportFragmentManager.findFragmentByTag("dialog")
+        if (prevDialog != null) {
+            fragmentTransaction.remove(prevDialog)
+        }
+        fragmentTransaction.addToBackStack(null)
+        dialog.show(fragmentTransaction, "dialog")
+    }
 
     private fun showAlertDialog(msg: String) {
         val dialogBuilder = AlertDialog.Builder(this)

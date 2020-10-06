@@ -26,6 +26,10 @@ class HistoryRepositoryImpl(context: Context) : HistoryRepository {
         return historyDao.insert(history)
     }
 
+    override suspend fun changeTitle(awb: String, title: String){
+        return historyDao.changeTitle(awb, title)
+    }
+
     override suspend fun deleteHistory(awb: String) {
         return historyDao.deleteHistory(awb)
     }

@@ -20,4 +20,7 @@
     <string name="delete">Delete</string>
     <string name="change_title">Change Title</string>
     <string name="track_desc">%s\npaket berada di %s</string>
+    <string name="cancel">Cancel</string>
+    <string name="change">Change</string>
+    <string name="input_title">input title</string>
 </resources>

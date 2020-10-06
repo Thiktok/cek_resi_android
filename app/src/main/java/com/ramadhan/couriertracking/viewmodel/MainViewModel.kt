@@ -16,4 +16,10 @@ class MainViewModel(private val repository: HistoryRepository): ViewModel() {
             repository.deleteHistory(awb)
         }
     }
+
+    fun editHistoryTitle(awb: String, title: String){
+        viewModelScope.launch {
+            repository.changeTitle(awb, title)
+        }
+    }
 }

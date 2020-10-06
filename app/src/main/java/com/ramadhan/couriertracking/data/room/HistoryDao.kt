@@ -15,6 +15,9 @@ interface HistoryDao {
     @Query("SELECT * FROM search_history")
     fun getHistories(): LiveData<List<History>>
 
+    @Query("UPDATE search_history SET title = :title WHERE awb = :awb")
+    suspend fun changeTitle(awb: String, title: String)
+
     @Query("DELETE FROM search_history WHERE awb = :awb")
     suspend fun deleteHistory(awb: String)
 
