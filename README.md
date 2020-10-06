@@ -3,14 +3,14 @@
 Aplikasi android untuk cek resi, menggunakan API dari binderbyte
 
 Support pengecekan resi dengan kurir:
-1. JNE - tested
-2. SiCepat - tested
-3. Ninja van - tested
-4. Pos Indonesia - need fix
+1. JNE - ok
+2. SiCepat - ok
+3. Ninja van - ok
+4. Pos Indonesia - ok
 5. Wahana - not tested
 6. Tiki - not tested
-7. anteraja - need fix
-8. JNT - need fix
+7. anteraja - ok
+8. JNT - ok
 
 ### Techstack:
 1. Kotlin
