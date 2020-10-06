@@ -59,6 +59,7 @@
         android:id="@+id/itemInfoDetail"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="4dp"
         android:gravity="top"
         android:textColor="@android:color/black"
         android:textSize="12sp"

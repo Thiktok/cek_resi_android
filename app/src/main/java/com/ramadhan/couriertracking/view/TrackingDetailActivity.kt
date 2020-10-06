@@ -13,9 +13,12 @@ import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.data.entity.TrackData
 import com.ramadhan.couriertracking.data.entity.Tracking
 import com.ramadhan.couriertracking.utils.Injector
+import com.ramadhan.couriertracking.utils.Utils
 import com.ramadhan.couriertracking.view.adapter.TrackingRecyclerViewAdapter
 import com.ramadhan.couriertracking.viewmodel.TrackingViewModel
 import kotlinx.android.synthetic.main.activity_tracking_detail.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class TrackingDetailActivity : AppCompatActivity() {
     companion object {
@@ -72,7 +75,9 @@ class TrackingDetailActivity : AppCompatActivity() {
 
     private val trackingObserver = Observer<TrackData> { data ->
         val trackingList: List<Tracking> = data.track.filter { it.desc.isNotEmpty() }
-        trackingListAdapter.updateItem(trackingList)
+        trackingListAdapter.updateItem(trackingList.sortedBy {
+            Utils.stringToTime(it.date)
+        })
         trackingDetailAwb.setValueText(data.summary.awb)
         val courierDetail =
             getString(R.string.courier_value, data.summary.courier, data.summary.service)

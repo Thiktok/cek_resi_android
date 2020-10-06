@@ -1,13 +1,16 @@
 package com.ramadhan.couriertracking.view.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.data.entity.Tracking
+import com.ramadhan.couriertracking.utils.Utils
 import kotlinx.android.synthetic.main.item_tracking_info.view.*
+import java.text.SimpleDateFormat
 
 class TrackingRecyclerViewAdapter(
     private val context: Context,
@@ -51,6 +54,7 @@ class TrackingRecyclerViewAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItem(tracking: Tracking) {
+            Log.d("status adapter", "${Utils.stringToTime(tracking.date)}")
             itemView.itemInfoDate.text = tracking.date.subSequence(0, 10)
             itemView.itemInfoTime.text = tracking.date.drop(10)
             if (tracking.location.isNullOrEmpty()){
