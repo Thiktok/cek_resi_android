@@ -6,81 +6,73 @@
     android:layout_height="match_parent"
     tools:context="com.ramadhan.couriertracking.view.TrackingDetailActivity">
 
-    <com.ramadhan.couriertracking.customview.InfoTextView
-        android:id="@+id/trackingDetailCourierName"
-        style="@style/Margin.Default.StartEnd"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:labelColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@id/trackingDetailAwb"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:textLabel="Nama Kurir" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.ramadhan.couriertracking.customview.InfoTextView
+                android:id="@+id/trackingDetailCourierName"
+                style="@style/Margin.Default.StartEnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelColor="@android:color/black"
+                app:textLabel="Nama Kurir" />
 
-    <com.ramadhan.couriertracking.customview.InfoTextView
-        android:id="@+id/trackingDetailAwb"
-        style="@style/Margin.Default.StartEnd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:labelColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@id/trackingDetailStatus"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trackingDetailCourierName"
-        app:textLabel="No. Resi" />
+            <com.ramadhan.couriertracking.customview.InfoTextView
+                android:id="@+id/trackingDetailAwb"
+                style="@style/Margin.Default.StartEnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelColor="@android:color/black"
+                app:textLabel="No. Resi" />
 
-    <com.ramadhan.couriertracking.customview.InfoTextView
-        android:id="@+id/trackingDetailStatus"
-        style="@style/Margin.Default.StartEnd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:labelColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@id/trackingDetailSender"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trackingDetailAwb"
-        app:textLabel="Status"/>
+            <com.ramadhan.couriertracking.customview.InfoTextView
+                android:id="@+id/trackingDetailStatus"
+                style="@style/Margin.Default.StartEnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelColor="@android:color/black"
+                app:textLabel="Status"/>
 
-    <com.ramadhan.couriertracking.customview.InfoTextView
-        android:id="@+id/trackingDetailSender"
-        style="@style/Margin.Default.StartEnd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:labelColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@id/trackingDetailDestination"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trackingDetailStatus"
-        app:textLabel="Pengirim" />
+            <com.ramadhan.couriertracking.customview.InfoTextView
+                android:id="@+id/trackingDetailSender"
+                style="@style/Margin.Default.StartEnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelColor="@android:color/black"
+                app:textLabel="Pengirim" />
 
-    <com.ramadhan.couriertracking.customview.InfoTextView
-        android:id="@+id/trackingDetailDestination"
-        style="@style/Margin.Default.StartEnd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:labelColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@id/trackingDetailSeparator"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trackingDetailSender"
-        app:textLabel="Tujuan" />
+            <com.ramadhan.couriertracking.customview.InfoTextView
+                android:id="@+id/trackingDetailDestination"
+                style="@style/Margin.Default.StartEnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:labelColor="@android:color/black"
+                app:textLabel="Tujuan" />
 
-    <View
-        android:id="@+id/trackingDetailSeparator"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        style="@style/Margin.Default.StartEnd"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@id/trackingDetailInfo"
-        app:layout_constraintTop_toBottomOf="@id/trackingDetailDestination" />
+            <View
+                android:id="@+id/trackingDetailSeparator"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                style="@style/Margin.Default.StartEnd"
+                android:background="@android:color/darker_gray"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/trackingDetailInfo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/trackingDetailDestination"
-        tools:listitem="@layout/item_tracking_info" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/trackingDetailInfo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/item_tracking_info"
+                tools:itemCount="5"/>
+        </LinearLayout>
+    </ScrollView>
+
 
     <include
         android:id="@+id/loadingLayout"
