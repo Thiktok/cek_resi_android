@@ -20,6 +20,12 @@ class MainViewModel(private val repository: HistoryRepository) : ViewModel() {
         }
     }
 
+    fun clearHistory(){
+        viewModelScope.launch{
+            repository.deleteAll()
+        }
+    }
+
     fun editHistoryTitle(awb: String, title: String?) {
         if (title.isNullOrEmpty()){
             _isChanged.postValue(false)

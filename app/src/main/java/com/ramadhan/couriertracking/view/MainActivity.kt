@@ -91,8 +91,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
-    private fun deleteAllHistory(){
-        
+    private fun deleteAllHistory() {
+        viewModel.clearHistory()
     }
 
     private fun readFromAsset(): List<Courier> {

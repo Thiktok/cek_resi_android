@@ -23,19 +23,19 @@ class HistoryRepositoryImpl(context: Context) : HistoryRepository {
     }
 
     override suspend fun addHistory(history: History) {
-        return historyDao.insert(history)
+        historyDao.insert(history)
     }
 
     override suspend fun changeTitle(awb: String, title: String){
-        return historyDao.changeTitle(awb, title)
+        historyDao.changeTitle(awb, title)
     }
 
     override suspend fun deleteHistory(awb: String) {
-        return historyDao.deleteHistory(awb)
+        historyDao.deleteHistory(awb)
     }
 
     override suspend fun deleteAll() {
-        return historyDao.deleteHistories()
+        historyDao.deleteHistories()
     }
 
 }

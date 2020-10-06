@@ -9,10 +9,12 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <com.ramadhan.couriertracking.customview.InfoTextView
                 android:id="@+id/trackingDetailCourierName"
                 style="@style/Margin.Default.StartEnd"
@@ -35,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:labelColor="@android:color/black"
-                app:textLabel="Status"/>
+                app:textLabel="Status" />
 
             <com.ramadhan.couriertracking.customview.InfoTextView
                 android:id="@+id/trackingDetailSender"
@@ -55,24 +57,22 @@
 
             <View
                 android:id="@+id/trackingDetailSeparator"
+                style="@style/Margin.Default.StartEnd"
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
-                style="@style/Margin.Default.StartEnd"
-                android:background="@android:color/darker_gray"/>
+                android:background="@android:color/darker_gray" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/trackingDetailInfo"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
                 android:nestedScrollingEnabled="false"
-                tools:listitem="@layout/item_tracking_info"
-                tools:itemCount="5"/>
+                tools:itemCount="5"
+                tools:listitem="@layout/item_tracking_info" />
         </LinearLayout>
     </ScrollView>
-
 
     <include
         android:id="@+id/loadingLayout"
