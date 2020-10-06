@@ -1,14 +1,10 @@
 package com.ramadhan.couriertracking.view
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.IBinder
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
@@ -24,6 +20,7 @@ import com.ramadhan.couriertracking.customview.DialogEditTitle
 import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.data.entity.History
 import com.ramadhan.couriertracking.utils.Injector
+import com.ramadhan.couriertracking.utils.ext.hideKeyboard
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.AWB_NUMBER
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.COURIER_NAME
 import com.ramadhan.couriertracking.view.adapter.CourierSpinnerAdapter
@@ -201,21 +198,5 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
         dialogBuilder.show()
-    }
-
-    fun hideKeyboard() {
-        val inputManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        var iBinder: IBinder? = null
-        try {
-            iBinder = currentFocus!!.windowToken
-        } catch (e: NullPointerException) {
-            e.printStackTrace()
-        }
-        if (iBinder != null) {
-            inputManager.hideSoftInputFromWindow(
-                iBinder,
-                InputMethodManager.HIDE_NOT_ALWAYS
-            )
-        }
     }
 }
