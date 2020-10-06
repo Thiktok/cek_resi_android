@@ -25,13 +25,20 @@ class DialogEditTitle(private val positiveListener: DialogListener?): DialogFrag
         }
         btnDialogPositive.setOnClickListener {
             val text = etDialogContent.text
-            if (positiveListener != null){
-                positiveListener.onPositiveDialog(text.toString())
-            }else{
-                val dialogListener = activity as DialogListener
-                dialogListener.onPositiveDialog(text.toString())
+            if (text.isNullOrEmpty()) {
+                etDialogContent.error = "Must fill this field to make change"
+                etDialogContent.requestFocus()
             }
-            dismiss()
+            else{
+                if (positiveListener != null){
+                    positiveListener.onPositiveDialog(text.toString())
+                }else{
+                    val dialogListener = activity as DialogListener
+                    dialogListener.onPositiveDialog(text.toString())
+                }
+                dismiss()
+            }
+
         }
     }
 

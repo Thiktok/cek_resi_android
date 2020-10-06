@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".CourierTrackingApplication">
-        <activity android:name=".view.TrackingDetailActivity"></activity>
+        <activity android:name=".view.TrackingDetailActivity" />
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

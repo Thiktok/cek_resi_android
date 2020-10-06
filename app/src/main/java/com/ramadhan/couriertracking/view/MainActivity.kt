@@ -8,10 +8,14 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.behavior.SwipeDismissBehavior
+import com.google.android.material.snackbar.BaseTransientBottomBar
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.customview.DialogEditTitle
@@ -70,6 +74,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         ).get(MainViewModel::class.java)
 
         viewModel.historiesData.observe(this, historyObserver)
+        viewModel.isChanged.observe(this, onTitleChange)
     }
 
     private fun readFromAsset(): List<Courier> {
@@ -106,21 +111,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
             override fun onDeleteMenuClick(position: Int) {
                 val item = historyAdapter.getData(position)
-                Toast.makeText(
-                    this@MainActivity,
-                    "Delete ${item.title ?: item.awb}",
-                    Toast.LENGTH_SHORT
-                ).show()
-                viewModel.deleteHistory(item.awb)
+                showSnackBar("${item.title ?: item.awb} Deleted")
             }
 
             override fun onEditMenuClick(position: Int) {
                 showEditTitleDialog(historyAdapter.getData(position))
-//                Toast.makeText(
-//                    this@MainActivity,
-//                    "Edit ${historyAdapter.getData(position).awb}",
-//                    Toast.LENGTH_SHORT
-//                ).show()
             }
         })
     }
@@ -134,6 +129,22 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private val historyObserver = Observer<List<History>> {
         historyAdapter.addList(it.reversed())
+    }
+
+    private val onTitleChange = Observer<Boolean> {
+        if (it) {
+            showSnackBar("Title changed")
+        }
+    }
+
+    private fun showSnackBar(msg: String){
+        Snackbar
+            .make(
+                mainCoordinatorLayout,
+                msg,
+                Snackbar.LENGTH_LONG
+            )
+            .show()
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
