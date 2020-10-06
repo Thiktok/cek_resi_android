@@ -6,7 +6,7 @@ import com.ramadhan.couriertracking.data.entity.History
 
 @Dao
 interface HistoryDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(history: History)
 
     @Query("SELECT * FROM search_history WHERE awb = :awb")
