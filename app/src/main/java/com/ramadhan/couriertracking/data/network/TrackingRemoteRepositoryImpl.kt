@@ -1,6 +1,8 @@
 package com.ramadhan.couriertracking.data.network
 
+import android.util.Log
 import com.ramadhan.couriertracking.data.entity.TrackData
+import com.ramadhan.couriertracking.data.network.response.ApiErrorHandler
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
 import com.ramadhan.couriertracking.data.network.response.OperationCallback
 import com.ramadhan.couriertracking.data.network.rest.ApiClient
@@ -25,16 +27,16 @@ class TrackingRemoteRepositoryImpl : TrackingRemoteRepository {
                 call: Call<BaseResponse<TrackData>>,
                 response: Response<BaseResponse<TrackData>>
             ) {
-
                 if (response.isSuccessful) {
                     callback.onSuccess(response.body())
                 } else {
-                    callback.onError(response.body()?.message)
+                    val error = ApiErrorHandler().parseError(response)
+                    callback.onError(error.status, error.message)
                 }
             }
 
             override fun onFailure(call: Call<BaseResponse<TrackData>>, t: Throwable) {
-                callback.onError(t.localizedMessage)
+                callback.onError(errorMessage =  t.localizedMessage)
             }
 
         })

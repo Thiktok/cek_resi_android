@@ -4,7 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ramadhan.couriertracking.data.entity.*
+import com.ramadhan.couriertracking.data.entity.Courier
+import com.ramadhan.couriertracking.data.entity.History
+import com.ramadhan.couriertracking.data.entity.TrackData
 import com.ramadhan.couriertracking.data.network.TrackingRemoteRepository
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
 import com.ramadhan.couriertracking.data.network.response.OperationCallback
@@ -42,9 +44,13 @@ private val historyRepository: HistoryRepository) : ViewModel() {
             awb,
             courier,
             object : OperationCallback<BaseResponse<TrackData>> {
-                override fun onError(error: String?) {
+                override fun onError(code: Int, errorMessage: String?) {
                     _isViewLoading.postValue(false)
-                    _onMessageError.postValue(error)
+                    if (errorMessage!!.contains("API Key")){
+                        _onMessageError.postValue("Cannot reach server")
+                    }else{
+                        _onMessageError.postValue(errorMessage)
+                    }
                 }
 
                 override fun onSuccess(data: BaseResponse<TrackData>?) {
@@ -54,8 +60,6 @@ private val historyRepository: HistoryRepository) : ViewModel() {
                         if (data.status == 200) {
                             _trackingData.postValue(data.data)
                             _isSuccessful.postValue(true)
-                        } else {
-                            _onMessageError.postValue(data.message)
                         }
                     } else {
                         _isNoData.postValue(true)
