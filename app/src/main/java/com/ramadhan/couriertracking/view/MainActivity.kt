@@ -2,6 +2,9 @@ package com.ramadhan.couriertracking.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
@@ -73,6 +76,25 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         viewModel.isChanged.observe(this, onTitleChange)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.deleteAllHistory -> {
+                deleteAllHistory()
+                true
+            }
+            else -> false
+        }
+    }
+
+    private fun deleteAllHistory(){
+        
+    }
+
     private fun readFromAsset(): List<Courier> {
         val fileName = "courier_list.json"
 
@@ -134,7 +156,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
     }
 
-    private fun showSnackBar(msg: String){
+    private fun showSnackBar(msg: String) {
         Snackbar
             .make(
                 mainCoordinatorLayout,
