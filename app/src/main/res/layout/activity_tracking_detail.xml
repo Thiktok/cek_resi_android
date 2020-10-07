@@ -6,9 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.ramadhan.couriertracking.view.TrackingDetailActivity">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/svLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,7 +76,7 @@
                 tools:itemCount="5"
                 tools:listitem="@layout/item_tracking_info" />
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <include
         android:id="@+id/loadingLayout"

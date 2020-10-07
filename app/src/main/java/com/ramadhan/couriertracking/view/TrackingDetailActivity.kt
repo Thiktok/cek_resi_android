@@ -70,11 +70,13 @@ class TrackingDetailActivity : AppCompatActivity() {
         trackingDetailInfo.apply {
             layoutManager = llManager
             adapter = trackingListAdapter
+            setHasFixedSize(true)
         }
     }
 
     private val trackingObserver = Observer<TrackData> { data ->
         val trackingList: List<Tracking> = data.track.filter { it.desc.isNotEmpty() }
+        Log.d("tracking", "size: ${trackingList.size}")
         trackingListAdapter.updateItem(trackingList.sortedByDescending { Utils.stringToTime(it.date) })
         trackingDetailAwb.setValueText(data.summary.awb)
         val courierDetail =
