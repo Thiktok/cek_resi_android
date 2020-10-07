@@ -76,7 +76,6 @@ class TrackingDetailActivity : AppCompatActivity() {
 
     private val trackingObserver = Observer<TrackData> { data ->
         val trackingList: List<Tracking> = data.track.filter { it.desc.isNotEmpty() }
-        Log.d("tracking", "size: ${trackingList.size}")
         trackingListAdapter.updateItem(trackingList.sortedByDescending { Utils.stringToTime(it.date) })
         trackingDetailAwb.setValueText(data.summary.awb)
         val courierDetail =
@@ -92,7 +91,6 @@ class TrackingDetailActivity : AppCompatActivity() {
         trackingDetailCourierName.setValueText(courierDetail)
         trackingDetailStatus.setValueText(detailStatus)
         if (detailStatus.equals("delivered", true)) {
-            Log.d("status", "equals delivered")
             trackingDetailStatus.setValueColor(R.color.greenSea)
         }
         trackingDetailSender.setValueText(detailSender)

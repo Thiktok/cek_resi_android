@@ -54,7 +54,6 @@ class TrackingRecyclerViewAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItem(tracking: Tracking) {
-            Log.d("status adapter", "${Utils.stringToTime(tracking.date)}")
             itemView.itemInfoDate.text = tracking.date.subSequence(0, 10)
             itemView.itemInfoTime.text = tracking.date.drop(10)
             if (tracking.location.isNullOrEmpty()){
