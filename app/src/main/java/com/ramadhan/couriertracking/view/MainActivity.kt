@@ -15,21 +15,25 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
+import com.ramadhan.couriertracking.CourierTrackingApplication
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.customview.DialogEditTitle
 import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.data.entity.History
-import com.ramadhan.couriertracking.utils.Injector
 import com.ramadhan.couriertracking.core.extension.hideKeyboard
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.AWB_NUMBER
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.COURIER_NAME
 import com.ramadhan.couriertracking.view.adapter.CourierSpinnerAdapter
 import com.ramadhan.couriertracking.view.adapter.HistoryAdapter
 import com.ramadhan.couriertracking.viewmodel.MainViewModel
+import com.ramadhan.couriertracking.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: MainViewModel
     private lateinit var courierAdapter: CourierSpinnerAdapter
     private lateinit var courierList: List<Courier>
@@ -67,9 +71,10 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     private fun setupLib() {
+        (application as CourierTrackingApplication).appComponent.inject(this)
         viewModel = ViewModelProvider(
             this,
-            Injector.provideViewModelFactory()
+            viewModelFactory
         ).get(MainViewModel::class.java)
 
         viewModel.historiesData.observe(this, historyObserver)
