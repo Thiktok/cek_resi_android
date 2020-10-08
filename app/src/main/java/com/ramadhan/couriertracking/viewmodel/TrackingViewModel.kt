@@ -1,5 +1,6 @@
 package com.ramadhan.couriertracking.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.data.entity.History
 import com.ramadhan.couriertracking.data.entity.TrackData
 import com.ramadhan.couriertracking.data.network.TrackingRemoteRepository
+import com.ramadhan.couriertracking.data.network.response.BaseResponse
 import com.ramadhan.couriertracking.data.network.response.DataResult
 import com.ramadhan.couriertracking.data.room.HistoryRepository
 import kotlinx.coroutines.launch
@@ -35,15 +37,20 @@ class TrackingViewModel(
     fun getTrackingData(awb: String, courier: String) {
         _isViewLoading.postValue(true)
 
-        val result = remoteRepository.retrieveTrackingNew(awb, courier)
-        _isViewLoading.postValue(false)
-        when(result){
+        val result: DataResult<BaseResponse<TrackData>> =
+            remoteRepository.retrieveTrackingNew(awb, courier)
+
+        when (result) {
             is DataResult.Success -> {
+                Log.d("callback", "success")
                 _trackingData.postValue(result.data?.data)
             }
             is DataResult.Error -> {
+
                 _onMessageError.postValue(result.errorMessage)
             }
         }
+        _isViewLoading.postValue(false)
+
     }
 }
