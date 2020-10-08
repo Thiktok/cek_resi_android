@@ -107,18 +107,17 @@ class TrackingDetailActivity : AppCompatActivity() {
     }
 
     private val onMessageErrorObserver = Observer<Any> {
-        Log.d("trackActivity", "$it")
-//        val dialogBuilder = AlertDialog.Builder(this)
-//
-//        dialogBuilder.setTitle(getString(R.string.alert_title))
-//        dialogBuilder.setMessage(it.toString())
-//        dialogBuilder.setCancelable(false)
-//
-//        dialogBuilder.setPositiveButton(R.string.ok_button) { _, _ ->
-//            finish()
-//        }
-//
-//        dialogBuilder.show()
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setTitle(getString(R.string.alert_title))
+        dialogBuilder.setMessage(it.toString())
+        dialogBuilder.setCancelable(false)
+
+        dialogBuilder.setPositiveButton(R.string.ok_button) { _, _ ->
+            finish()
+        }
+
+        dialogBuilder.show()
     }
 
     override fun onBackPressed() {
