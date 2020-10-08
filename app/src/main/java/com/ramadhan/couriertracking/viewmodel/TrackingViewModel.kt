@@ -15,8 +15,9 @@ import com.ramadhan.couriertracking.data.room.HistoryRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class TrackingViewModel(
+class TrackingViewModel @Inject constructor(
     private val remoteRepository: TrackingRemoteRepository,
     private val historyRepository: HistoryRepository
 ) : ViewModel() {
@@ -38,15 +39,12 @@ class TrackingViewModel(
 
     fun getTrackingData(awb: String, courier: String) {
         _isViewLoading.postValue(true)
-
         viewModelScope.launch {
-            val result: DataResult<BaseResponse<TrackData>> = withContext(Dispatchers.IO) {
-                remoteRepository.retrieveTrackingNew(awb, courier)
-            }
-            Log.d("callback", "success")
+            val result: DataResult<BaseResponse<TrackData>> = remoteRepository.retrieveTrackingNew(awb, courier)
             when (result) {
                 is DataResult.Success -> {
-                    _trackingData.postValue(result.data?.data)
+                    Log.d("callback", "success")
+                    _trackingData.value = result.data?.data
                 }
                 is DataResult.Error -> {
                     _onMessageError.postValue(result.errorMessage)
@@ -54,7 +52,5 @@ class TrackingViewModel(
             }
             _isViewLoading.postValue(false)
         }
-
-
     }
 }

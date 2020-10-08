@@ -47,7 +47,6 @@ class TrackingDetailActivity : AppCompatActivity() {
             this,
             viewModelFactory
         ).get(TrackingViewModel::class.java)
-
         courierData = intent.getParcelableExtra(COURIER_NAME)
         awbData = intent.getStringExtra(AWB_NUMBER)
 
