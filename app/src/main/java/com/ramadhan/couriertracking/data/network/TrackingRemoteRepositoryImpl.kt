@@ -1,6 +1,5 @@
 package com.ramadhan.couriertracking.data.network
 
-import android.util.Log
 import com.ramadhan.couriertracking.data.entity.TrackData
 import com.ramadhan.couriertracking.data.network.api.TrackApi
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
@@ -11,7 +10,6 @@ import com.ramadhan.couriertracking.utils.handleApiSuccess
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 import javax.inject.Inject
 
 class TrackingRemoteRepositoryImpl @Inject constructor(
@@ -31,7 +29,6 @@ class TrackingRemoteRepositoryImpl @Inject constructor(
                     response: Response<BaseResponse<TrackData>>
                 ) {
                     result = if (response.isSuccessful) {
-
                         handleApiSuccess(response.body()!!)
                     } else {
                         handleApiError(response)
