@@ -1,5 +1,6 @@
 package com.ramadhan.couriertracking.data.network
 
+import android.util.Log
 import com.ramadhan.couriertracking.data.entity.TrackData
 import com.ramadhan.couriertracking.data.network.api.TrackApi
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
@@ -16,7 +17,7 @@ class TrackingRemoteRepositoryImpl @Inject constructor(
     private val trackingApi: TrackApi
 ) : TrackingRemoteRepository {
 
-    override fun retrieveTrackingNew(
+    override suspend fun retrieveTrackingNew(
         awb: String,
         courier: String
     ): DataResult<BaseResponse<TrackData>> {
@@ -29,6 +30,7 @@ class TrackingRemoteRepositoryImpl @Inject constructor(
                     response: Response<BaseResponse<TrackData>>
                 ) {
                     result = if (response.isSuccessful) {
+                        Log.d("callback repo", "success")
                         handleApiSuccess(response.body()!!)
                     } else {
                         handleApiError(response)

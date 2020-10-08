@@ -12,7 +12,9 @@ import com.ramadhan.couriertracking.data.network.TrackingRemoteRepository
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
 import com.ramadhan.couriertracking.data.network.response.DataResult
 import com.ramadhan.couriertracking.data.room.HistoryRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class TrackingViewModel(
     private val remoteRepository: TrackingRemoteRepository,
@@ -37,20 +39,22 @@ class TrackingViewModel(
     fun getTrackingData(awb: String, courier: String) {
         _isViewLoading.postValue(true)
 
-        val result: DataResult<BaseResponse<TrackData>> =
-            remoteRepository.retrieveTrackingNew(awb, courier)
-
-        when (result) {
-            is DataResult.Success -> {
-                Log.d("callback", "success")
-                _trackingData.postValue(result.data?.data)
+        viewModelScope.launch {
+            val result: DataResult<BaseResponse<TrackData>> = withContext(Dispatchers.IO) {
+                remoteRepository.retrieveTrackingNew(awb, courier)
             }
-            is DataResult.Error -> {
-
-                _onMessageError.postValue(result.errorMessage)
+            Log.d("callback", "success")
+            when (result) {
+                is DataResult.Success -> {
+                    _trackingData.postValue(result.data?.data)
+                }
+                is DataResult.Error -> {
+                    _onMessageError.postValue(result.errorMessage)
+                }
             }
+            _isViewLoading.postValue(false)
         }
-        _isViewLoading.postValue(false)
+
 
     }
 }

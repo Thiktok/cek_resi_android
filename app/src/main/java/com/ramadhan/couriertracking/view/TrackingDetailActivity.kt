@@ -1,6 +1,7 @@
 package com.ramadhan.couriertracking.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -37,11 +38,6 @@ class TrackingDetailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_tracking_detail)
 
         setupLib()
-        if (savedInstanceState == null) {
-            if (courierData != null && awbData != null) {
-                viewModel.getTrackingData(awbData!!, courierData!!.code)
-            }
-        }
         setupUI()
     }
 
@@ -54,15 +50,19 @@ class TrackingDetailActivity : AppCompatActivity() {
 
         courierData = intent.getParcelableExtra(COURIER_NAME)
         awbData = intent.getStringExtra(AWB_NUMBER)
+
+        if (courierData != null && awbData != null) {
+            viewModel.getTrackingData(awbData!!, courierData!!.code)
+        }
+
+        viewModel.trackingData.observe(this, trackingObserver)
+        viewModel.isViewLoading.observe(this, loadingObserver)
+        viewModel.onMessageError.observe(this, onMessageErrorObserver)
     }
 
     private fun setupUI() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = "Tracking from ${courierData?.name}"
-
-        viewModel.trackingData.observe(this, trackingObserver)
-        viewModel.isViewLoading.observe(this, loadingObserver)
-        viewModel.onMessageError.observe(this, onMessageErrorObserver)
 
         val llManager = LinearLayoutManager(this)
         trackingListAdapter = TrackingRecyclerViewAdapter(this, ArrayList())
@@ -108,17 +108,18 @@ class TrackingDetailActivity : AppCompatActivity() {
     }
 
     private val onMessageErrorObserver = Observer<Any> {
-        val dialogBuilder = AlertDialog.Builder(this)
-
-        dialogBuilder.setTitle(getString(R.string.alert_title))
-        dialogBuilder.setMessage(it.toString())
-        dialogBuilder.setCancelable(false)
-
-        dialogBuilder.setPositiveButton(R.string.ok_button) { _, _ ->
-            finish()
-        }
-
-        dialogBuilder.show()
+        Log.d("trackActivity", "$it")
+//        val dialogBuilder = AlertDialog.Builder(this)
+//
+//        dialogBuilder.setTitle(getString(R.string.alert_title))
+//        dialogBuilder.setMessage(it.toString())
+//        dialogBuilder.setCancelable(false)
+//
+//        dialogBuilder.setPositiveButton(R.string.ok_button) { _, _ ->
+//            finish()
+//        }
+//
+//        dialogBuilder.show()
     }
 
     override fun onBackPressed() {

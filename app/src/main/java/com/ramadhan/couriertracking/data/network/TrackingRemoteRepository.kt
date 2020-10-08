@@ -6,7 +6,7 @@ import com.ramadhan.couriertracking.data.network.response.DataResult
 
 interface TrackingRemoteRepository {
 
-    fun retrieveTrackingNew(
+    suspend fun retrieveTrackingNew(
         awb: String,
         courier: String
     ): DataResult<BaseResponse<TrackData>>
