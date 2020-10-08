@@ -1,14 +1,12 @@
 package com.ramadhan.couriertracking.view
 
 import android.content.Intent
-import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -17,10 +15,11 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.ramadhan.couriertracking.CourierTrackingApplication
 import com.ramadhan.couriertracking.R
+import com.ramadhan.couriertracking.core.extension.hideKeyboard
+import com.ramadhan.couriertracking.core.platform.BaseActivity
 import com.ramadhan.couriertracking.customview.DialogEditTitle
 import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.data.entity.History
-import com.ramadhan.couriertracking.core.extension.hideKeyboard
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.AWB_NUMBER
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.COURIER_NAME
 import com.ramadhan.couriertracking.view.adapter.CourierSpinnerAdapter
@@ -30,7 +29,7 @@ import com.ramadhan.couriertracking.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -42,18 +41,20 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     private var courierData: Courier? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    override fun layoutId(): Int = R.layout.activity_main
 
-        setupLib()
+    override fun setupLib() {
+        (application as CourierTrackingApplication).appComponent.inject(this)
+        viewModel = ViewModelProvider(
+            this,
+            viewModelFactory
+        ).get(MainViewModel::class.java)
 
-        setupUI()
-
-        onAction()
+        viewModel.historiesData.observe(this, historyObserver)
+        viewModel.isChanged.observe(this, onTitleChange)
     }
 
-    private fun setupUI() {
+    override fun initView() {
         courierList = readFromAsset()
         courierAdapter = CourierSpinnerAdapter(this, courierList)
         mainCourierList.adapter = courierAdapter
@@ -70,15 +71,33 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             .addItemDecoration(DividerItemDecoration(this, llManager.orientation))
     }
 
-    private fun setupLib() {
-        (application as CourierTrackingApplication).appComponent.inject(this)
-        viewModel = ViewModelProvider(
-            this,
-            viewModelFactory
-        ).get(MainViewModel::class.java)
+    override fun onAction() {
+        mainButtonSearch.setOnClickListener {
+            if (mainAWBInput.text.isNotEmpty()) {
+                courierData?.let { it1 -> goToTracking(mainAWBInput.text.toString(), it1) }
+            } else {
+                showAlertDialog("Masukkan resi terlebih dahulu")
+            }
+        }
 
-        viewModel.historiesData.observe(this, historyObserver)
-        viewModel.isChanged.observe(this, onTitleChange)
+        historyAdapter.setOnItemClickListener(object : HistoryAdapter.OnItemClickListener {
+            override fun onItemClick(view: View?, position: Int) {
+                goToTracking(
+                    historyAdapter.getData(position).awb,
+                    historyAdapter.getData(position).courier
+                )
+            }
+
+            override fun onDeleteMenuClick(position: Int) {
+                val item = historyAdapter.getData(position)
+                viewModel.deleteHistory(item.awb)
+                showSnackBar("${item.title ?: item.awb} Deleted")
+            }
+
+            override fun onEditMenuClick(position: Int) {
+                showEditTitleDialog(historyAdapter.getData(position))
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -114,36 +133,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             it.available
         }
     }
-
-    private fun onAction() {
-        mainButtonSearch.setOnClickListener {
-            if (mainAWBInput.text.isNotEmpty()) {
-                courierData?.let { it1 -> goToTracking(mainAWBInput.text.toString(), it1) }
-            } else {
-                showAlertDialog("Masukkan resi terlebih dahulu")
-            }
-        }
-
-        historyAdapter.setOnItemClickListener(object : HistoryAdapter.OnItemClickListener {
-            override fun onItemClick(view: View?, position: Int) {
-                goToTracking(
-                    historyAdapter.getData(position).awb,
-                    historyAdapter.getData(position).courier
-                )
-            }
-
-            override fun onDeleteMenuClick(position: Int) {
-                val item = historyAdapter.getData(position)
-                viewModel.deleteHistory(item.awb)
-                showSnackBar("${item.title ?: item.awb} Deleted")
-            }
-
-            override fun onEditMenuClick(position: Int) {
-                showEditTitleDialog(historyAdapter.getData(position))
-            }
-        })
-    }
-
+    
     private fun goToTracking(awb: String, courier: Courier) {
         val intent = Intent(this, TrackingDetailActivity::class.java)
         intent.putExtra(COURIER_NAME, courier)
