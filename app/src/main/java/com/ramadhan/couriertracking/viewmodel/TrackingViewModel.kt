@@ -43,7 +43,6 @@ class TrackingViewModel @Inject constructor(
             val result: DataResult<BaseResponse<TrackData>> = remoteRepository.retrieveTrackingNew(awb, courier)
             when (result) {
                 is DataResult.Success -> {
-                    Log.d("callback", "success")
                     _trackingData.value = result.data?.data
                 }
                 is DataResult.Error -> {
