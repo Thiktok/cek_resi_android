@@ -10,6 +10,4 @@ interface TrackingRemoteRepository {
         awb: String,
         courier: String
     ): DataResult<BaseResponse<TrackData>>
-
-    fun cancel()
 }

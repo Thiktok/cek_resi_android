@@ -1,4 +1,4 @@
-package com.ramadhan.couriertracking.data.network.rest
+package com.ramadhan.couriertracking.data.network.api
 
 import com.ramadhan.couriertracking.BuildConfig
 import com.ramadhan.couriertracking.utils.ServiceData
@@ -14,7 +14,7 @@ object ApiClient {
         this.level = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
     }
 
-    fun build(): ApiServices {
+    fun build(): TrackApi {
 
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
@@ -27,7 +27,7 @@ object ApiClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        return retrofit.create(ApiServices::class.java)
+        return retrofit.create(TrackApi::class.java)
 
     }
 }

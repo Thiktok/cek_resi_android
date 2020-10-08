@@ -6,8 +6,8 @@ sealed class DataResult<out T> {
     data class Success<out T>(val data: T?) : DataResult<T>()
 
     class Error(
-        val exception: Exception,
+        private val exception: Exception,
         val code: Int = 999,
-        val errorMessage: String?
+        val errorMessage: String? = exception.localizedMessage
     ): DataResult<Nothing>()
 }

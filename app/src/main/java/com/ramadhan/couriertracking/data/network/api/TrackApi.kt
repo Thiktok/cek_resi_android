@@ -1,4 +1,4 @@
-package com.ramadhan.couriertracking.data.network.rest
+package com.ramadhan.couriertracking.data.network.api
 
 import com.ramadhan.couriertracking.data.entity.TrackData
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
@@ -6,7 +6,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface ApiServices {
+interface TrackApi {
 
     @GET("track")
     fun getTrackingNew(

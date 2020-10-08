@@ -3,7 +3,6 @@ package com.ramadhan.couriertracking.core.di
 import android.content.Context
 import com.ramadhan.couriertracking.BuildConfig
 import com.ramadhan.couriertracking.CourierTrackingApplication
-import com.ramadhan.couriertracking.data.network.rest.ApiClient
 import com.ramadhan.couriertracking.utils.ServiceData
 import dagger.Module
 import dagger.Provides
