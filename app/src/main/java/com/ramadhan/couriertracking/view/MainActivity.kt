@@ -133,7 +133,7 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
             it.available
         }
     }
-    
+
     private fun goToTracking(awb: String, courier: Courier) {
         val intent = Intent(this, TrackingDetailActivity::class.java)
         intent.putExtra(COURIER_NAME, courier)

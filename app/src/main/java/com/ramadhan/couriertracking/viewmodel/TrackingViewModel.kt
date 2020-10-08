@@ -1,6 +1,5 @@
 package com.ramadhan.couriertracking.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,9 +11,7 @@ import com.ramadhan.couriertracking.data.network.TrackingRemoteRepository
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
 import com.ramadhan.couriertracking.data.network.response.DataResult
 import com.ramadhan.couriertracking.data.room.HistoryRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class TrackingViewModel @Inject constructor(
