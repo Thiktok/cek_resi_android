@@ -5,9 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.ramadhan.couriertracking.data.network.TrackingRemoteRepository
 import com.ramadhan.couriertracking.data.room.HistoryRepository
 import java.lang.IllegalArgumentException
+import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory(
+class ViewModelFactory @Inject constructor(
     private val remoteRepository: TrackingRemoteRepository,
     private val historyRepository: HistoryRepository
 ) : ViewModelProvider.Factory {
