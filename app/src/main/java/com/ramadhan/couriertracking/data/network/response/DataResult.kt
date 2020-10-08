@@ -10,4 +10,6 @@ sealed class DataResult<out T> {
         val code: Int = 999,
         val errorMessage: String? = exception.localizedMessage
     ): DataResult<Nothing>()
+
+    object Empty : DataResult<Nothing>()
 }
