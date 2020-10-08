@@ -1,24 +1,23 @@
 package com.ramadhan.couriertracking.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ramadhan.couriertracking.CourierTrackingApplication
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.data.entity.TrackData
 import com.ramadhan.couriertracking.data.entity.Tracking
-import com.ramadhan.couriertracking.utils.Injector
 import com.ramadhan.couriertracking.utils.Utils
 import com.ramadhan.couriertracking.view.adapter.TrackingRecyclerViewAdapter
 import com.ramadhan.couriertracking.viewmodel.TrackingViewModel
+import com.ramadhan.couriertracking.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_tracking_detail.*
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import javax.inject.Inject
 
 class TrackingDetailActivity : AppCompatActivity() {
     companion object {
@@ -26,6 +25,8 @@ class TrackingDetailActivity : AppCompatActivity() {
         const val AWB_NUMBER = "resi"
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: TrackingViewModel
     private lateinit var trackingListAdapter: TrackingRecyclerViewAdapter
     private var courierData: Courier? = null
@@ -45,9 +46,10 @@ class TrackingDetailActivity : AppCompatActivity() {
     }
 
     private fun setupLib() {
+        (application as CourierTrackingApplication).appComponent.inject(this)
         viewModel = ViewModelProvider(
             this,
-            Injector.provideViewModelFactory()
+            viewModelFactory
         ).get(TrackingViewModel::class.java)
 
         courierData = intent.getParcelableExtra(COURIER_NAME)
@@ -60,9 +62,7 @@ class TrackingDetailActivity : AppCompatActivity() {
 
         viewModel.trackingData.observe(this, trackingObserver)
         viewModel.isViewLoading.observe(this, loadingObserver)
-        viewModel.isNoData.observe(this, noDataObserver)
         viewModel.onMessageError.observe(this, onMessageErrorObserver)
-        viewModel.isSuccessful.observe(this, onSuccessObserver)
 
         val llManager = LinearLayoutManager(this)
         trackingListAdapter = TrackingRecyclerViewAdapter(this, ArrayList())
@@ -96,24 +96,15 @@ class TrackingDetailActivity : AppCompatActivity() {
         trackingDetailSender.setValueText(detailSender)
         trackingDetailDestination.setValueText(detailReceiver)
 
-
-    }
-
-    private val onSuccessObserver = Observer<Boolean> {
-        if (it) {
-            if (awbData != null && courierData != null) {
-                viewModel.saveAsHistory(awbData!!, courierData!!)
-            }
+        if (awbData != null && courierData != null) {
+            viewModel.saveAsHistory(awbData!!, courierData!!)
         }
+
     }
 
     private val loadingObserver = Observer<Boolean> {
         val visibility = if (it) View.VISIBLE else View.GONE
         loadingLayout.visibility = visibility
-    }
-
-    private val noDataObserver = Observer<Boolean> {
-
     }
 
     private val onMessageErrorObserver = Observer<Any> {
