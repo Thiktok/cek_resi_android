@@ -3,8 +3,9 @@ package com.ramadhan.couriertracking.data.room
 import android.content.Context
 import androidx.lifecycle.LiveData
 import com.ramadhan.couriertracking.data.entity.History
+import javax.inject.Inject
 
-class HistoryRepositoryImpl(context: Context) : HistoryRepository {
+class HistoryRepositoryImpl @Inject constructor(context: Context) : HistoryRepository {
     private var historyDao: HistoryDao
 
     init {
