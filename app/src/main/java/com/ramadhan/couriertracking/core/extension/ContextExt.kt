@@ -1,4 +1,4 @@
-package com.ramadhan.couriertracking.utils.ext
+package com.ramadhan.couriertracking.core.extension
 
 import android.app.Activity
 import android.content.Context

@@ -20,7 +20,7 @@ import com.ramadhan.couriertracking.customview.DialogEditTitle
 import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.data.entity.History
 import com.ramadhan.couriertracking.utils.Injector
-import com.ramadhan.couriertracking.utils.ext.hideKeyboard
+import com.ramadhan.couriertracking.core.extension.hideKeyboard
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.AWB_NUMBER
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.COURIER_NAME
 import com.ramadhan.couriertracking.view.adapter.CourierSpinnerAdapter
