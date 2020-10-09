@@ -101,11 +101,8 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
                     object : DialogEditTitle.DialogListener {
                         override fun onPositiveDialog(text: String?) {
                             hideKeyboard()
-                            with(historyAdapter.getData(position)) {
-                                viewModel.editHistoryTitle(
-                                    awb,
-                                    title
-                                )
+                            historyAdapter.getData(position).apply {
+                                viewModel.editHistoryTitle(awb, title)
                             }
                         }
                     })
@@ -160,7 +157,7 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
 
     private val onTitleChange = Observer<Boolean> {
         if (it) {
-           Message.notify(mainCoordinatorLayout, getString(R.string.title_changed))
+            Message.notify(mainCoordinatorLayout, getString(R.string.title_changed))
         }
     }
 
