@@ -20,6 +20,7 @@ import com.ramadhan.couriertracking.core.platform.BaseActivity
 import com.ramadhan.couriertracking.customview.DialogEditTitle
 import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.data.entity.History
+import com.ramadhan.couriertracking.utils.Message
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.AWB_NUMBER
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.COURIER_NAME
 import com.ramadhan.couriertracking.view.adapter.CourierSpinnerAdapter
@@ -76,7 +77,7 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
             if (mainAWBInput.text.isNotEmpty()) {
                 courierData?.let { it1 -> goToTracking(mainAWBInput.text.toString(), it1) }
             } else {
-                showAlertDialog("Masukkan resi terlebih dahulu")
+                Message.alert(this, getString(R.string.empty_awb))
             }
         }
 
@@ -91,11 +92,23 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
             override fun onDeleteMenuClick(position: Int) {
                 val item = historyAdapter.getData(position)
                 viewModel.deleteHistory(item.awb)
-                showSnackBar("${item.title ?: item.awb} Deleted")
+                Message.notify(mainCoordinatorLayout, "${item.title ?: item.awb} Deleted")
             }
 
             override fun onEditMenuClick(position: Int) {
-                showEditTitleDialog(historyAdapter.getData(position))
+                Message.alertEditText(
+                    supportFragmentManager,
+                    object : DialogEditTitle.DialogListener {
+                        override fun onPositiveDialog(text: String?) {
+                            hideKeyboard()
+                            with(historyAdapter.getData(position)) {
+                                viewModel.editHistoryTitle(
+                                    awb,
+                                    title
+                                )
+                            }
+                        }
+                    })
             }
         })
     }
@@ -147,18 +160,8 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
 
     private val onTitleChange = Observer<Boolean> {
         if (it) {
-            showSnackBar("Title changed")
+           Message.notify(mainCoordinatorLayout, getString(R.string.title_changed))
         }
-    }
-
-    private fun showSnackBar(msg: String) {
-        Snackbar
-            .make(
-                mainCoordinatorLayout,
-                msg,
-                Snackbar.LENGTH_LONG
-            )
-            .show()
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -166,32 +169,4 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-    private fun showEditTitleDialog(item: History) {
-        val dialog = DialogEditTitle(object : DialogEditTitle.DialogListener {
-            override fun onPositiveDialog(text: String?) {
-                hideKeyboard()
-                viewModel.editHistoryTitle(item.awb, text.toString())
-            }
-        })
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        val prevDialog = supportFragmentManager.findFragmentByTag("dialog")
-        if (prevDialog != null) {
-            fragmentTransaction.remove(prevDialog)
-        }
-        fragmentTransaction.addToBackStack(null)
-        dialog.show(fragmentTransaction, "dialog")
-    }
-
-    private fun showAlertDialog(msg: String) {
-        val dialogBuilder = AlertDialog.Builder(this)
-
-        dialogBuilder.setTitle(getString(R.string.alert_title))
-        dialogBuilder.setMessage(msg)
-
-        dialogBuilder.setPositiveButton(R.string.ok_button) { _, _ ->
-        }
-
-        dialogBuilder.show()
-    }
 }
