@@ -2,18 +2,18 @@ package com.ramadhan.couriertracking.data.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.ramadhan.couriertracking.data.entity.History
+import com.ramadhan.couriertracking.data.entity.HistoryEntity
 
 @Dao
 interface HistoryDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(history: History)
+    suspend fun insert(history: HistoryEntity)
 
     @Query("SELECT * FROM search_history WHERE awb = :awb")
-    fun getHistory(awb: String): LiveData<History>
+    fun getHistory(awb: String): LiveData<HistoryEntity>
 
     @Query("SELECT * FROM search_history")
-    fun getHistories(): LiveData<List<History>>
+    fun getHistories(): LiveData<List<HistoryEntity>>
 
     @Query("UPDATE search_history SET title = :title WHERE awb = :awb")
     suspend fun changeTitle(awb: String, title: String)

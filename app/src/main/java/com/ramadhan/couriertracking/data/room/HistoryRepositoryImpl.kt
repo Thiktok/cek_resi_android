@@ -2,7 +2,7 @@ package com.ramadhan.couriertracking.data.room
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.ramadhan.couriertracking.data.entity.History
+import com.ramadhan.couriertracking.data.entity.HistoryEntity
 import javax.inject.Inject
 
 class HistoryRepositoryImpl @Inject constructor(context: Context) : HistoryRepository {
@@ -15,15 +15,15 @@ class HistoryRepositoryImpl @Inject constructor(context: Context) : HistoryRepos
         }
     }
 
-    override fun getHistories(): LiveData<List<History>> {
+    override fun getHistories(): LiveData<List<HistoryEntity>> {
         return historyDao.getHistories()
     }
 
-    override fun getHistory(awb: String): LiveData<History> {
+    override fun getHistory(awb: String): LiveData<HistoryEntity> {
         return historyDao.getHistory(awb)
     }
 
-    override suspend fun addHistory(history: History) {
+    override suspend fun addHistory(history: HistoryEntity) {
         historyDao.insert(history)
     }
 

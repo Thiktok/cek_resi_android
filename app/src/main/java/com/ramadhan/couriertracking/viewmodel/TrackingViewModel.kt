@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ramadhan.couriertracking.data.entity.Courier
-import com.ramadhan.couriertracking.data.entity.History
+import com.ramadhan.couriertracking.data.entity.HistoryEntity
 import com.ramadhan.couriertracking.data.entity.TrackData
 import com.ramadhan.couriertracking.data.network.TrackingRemoteRepository
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
@@ -30,7 +30,7 @@ class TrackingViewModel @Inject constructor(
 
     fun saveAsHistory(awb: String, courier: Courier) {
         viewModelScope.launch {
-            historyRepository.addHistory(History(awb, courier))
+            historyRepository.addHistory(HistoryEntity(awb, courier))
         }
     }
 

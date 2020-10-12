@@ -1,6 +1,7 @@
 package com.ramadhan.couriertracking.utils
 
 import android.content.Context
+import android.content.DialogInterface
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.FragmentManager
@@ -9,14 +10,13 @@ import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.customview.DialogEditTitle
 
 object Message {
-    fun alert(context: Context, msg: String) {
+    fun alert(context: Context, msg: String, positiveAction: DialogInterface.OnClickListener?) {
         val dialogBuilder = AlertDialog.Builder(context)
 
         dialogBuilder.setTitle(context.getString(R.string.alert_title))
         dialogBuilder.setMessage(msg)
 
-        dialogBuilder.setPositiveButton(R.string.ok_button) { _, _ ->
-        }
+        dialogBuilder.setPositiveButton(context.getString(R.string.ok_button), positiveAction)
 
         dialogBuilder.show()
     }

@@ -6,12 +6,10 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Spinner
-import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.ramadhan.couriertracking.CourierTrackingApplication
 import com.ramadhan.couriertracking.R
@@ -19,7 +17,7 @@ import com.ramadhan.couriertracking.core.extension.hideKeyboard
 import com.ramadhan.couriertracking.core.platform.BaseActivity
 import com.ramadhan.couriertracking.customview.DialogEditTitle
 import com.ramadhan.couriertracking.data.entity.Courier
-import com.ramadhan.couriertracking.data.entity.History
+import com.ramadhan.couriertracking.data.entity.HistoryEntity
 import com.ramadhan.couriertracking.utils.Message
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.AWB_NUMBER
 import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.COURIER_NAME
@@ -77,7 +75,7 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
             if (mainAWBInput.text.isNotEmpty()) {
                 courierData?.let { it1 -> goToTracking(mainAWBInput.text.toString(), it1) }
             } else {
-                Message.alert(this, getString(R.string.empty_awb))
+                Message.alert(this, getString(R.string.empty_awb), null)
             }
         }
 
@@ -151,7 +149,7 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
         startActivity(intent)
     }
 
-    private val historyObserver = Observer<List<History>> {
+    private val historyObserver = Observer<List<HistoryEntity>> {
         historyAdapter.addList(it.reversed())
     }
 
