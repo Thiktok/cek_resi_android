@@ -1,19 +1,10 @@
 package com.ramadhan.couriertracking.data.room
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import com.ramadhan.couriertracking.data.entity.HistoryEntity
 import javax.inject.Inject
 
-class HistoryRepositoryImpl @Inject constructor(context: Context) : HistoryRepository {
-    private var historyDao: HistoryDao
-
-    init {
-        val db = HistoryDatabase.invoke(context)
-        db.let {
-            historyDao = it.historyDao()
-        }
-    }
+class HistoryRepositoryImpl @Inject constructor(private val historyDao: HistoryDao) : HistoryRepository {
 
     override fun getHistories(): LiveData<List<HistoryEntity>> {
         return historyDao.getHistories()

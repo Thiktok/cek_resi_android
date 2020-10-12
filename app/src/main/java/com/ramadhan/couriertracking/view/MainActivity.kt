@@ -1,6 +1,5 @@
 package com.ramadhan.couriertracking.view
 
-import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -19,8 +18,6 @@ import com.ramadhan.couriertracking.customview.DialogEditTitle
 import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.data.entity.HistoryEntity
 import com.ramadhan.couriertracking.utils.Message
-import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.AWB_NUMBER
-import com.ramadhan.couriertracking.view.TrackingDetailActivity.Companion.COURIER_NAME
 import com.ramadhan.couriertracking.view.adapter.CourierSpinnerAdapter
 import com.ramadhan.couriertracking.view.adapter.HistoryAdapter
 import com.ramadhan.couriertracking.viewmodel.MainViewModel
@@ -111,8 +108,8 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
                     object : DialogEditTitle.DialogListener {
                         override fun onPositiveDialog(text: String?) {
                             hideKeyboard()
-                            historyAdapter.getData(position).apply {
-                                viewModel.editHistoryTitle(awb, title)
+                            with(historyAdapter.getData(position)){
+                                viewModel.editHistoryTitle(awb, text)
                             }
                         }
                     })
