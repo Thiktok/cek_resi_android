@@ -72,8 +72,17 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
 
     override fun onAction() {
         mainButtonSearch.setOnClickListener {
-            if (mainAWBInput.text.isNotEmpty()) {
-                courierData?.let { it1 -> goToTracking(mainAWBInput.text.toString(), it1) }
+            val awb = mainAWBInput.text.toString()
+            if (awb.isNotEmpty()) {
+                courierData?.let { it1 ->
+                    startActivity(
+                        TrackingDetailActivity.callIntent(
+                            this,
+                            awb,
+                            it1
+                        )
+                    )
+                }
             } else {
                 Message.alert(this, getString(R.string.empty_awb), null)
             }
@@ -81,9 +90,12 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
 
         historyAdapter.setOnItemClickListener(object : HistoryAdapter.OnItemClickListener {
             override fun onItemClick(view: View?, position: Int) {
-                goToTracking(
-                    historyAdapter.getData(position).awb,
-                    historyAdapter.getData(position).courier
+                startActivity(
+                    TrackingDetailActivity.callIntent(
+                        this@MainActivity,
+                        historyAdapter.getData(position).awb,
+                        historyAdapter.getData(position).courier
+                    )
                 )
             }
 
@@ -140,13 +152,6 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
         return gson.fromJson(jsonString, Array<Courier>::class.java).toList().filter {
             it.available
         }
-    }
-
-    private fun goToTracking(awb: String, courier: Courier) {
-        val intent = Intent(this, TrackingDetailActivity::class.java)
-        intent.putExtra(COURIER_NAME, courier)
-        intent.putExtra(AWB_NUMBER, awb)
-        startActivity(intent)
     }
 
     private val historyObserver = Observer<List<HistoryEntity>> {

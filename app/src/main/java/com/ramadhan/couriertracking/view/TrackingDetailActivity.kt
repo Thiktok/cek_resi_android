@@ -2,6 +2,7 @@ package com.ramadhan.couriertracking.view
 
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +26,14 @@ class TrackingDetailActivity : BaseActivity() {
     companion object {
         const val COURIER_NAME = "courier"
         const val AWB_NUMBER = "resi"
+
+        fun callIntent(context: Context, awb: String, courier: Courier): Intent{
+            val intent = Intent(context, TrackingDetailActivity::class.java)
+            intent.putExtra(COURIER_NAME, courier)
+            intent.putExtra(AWB_NUMBER, awb)
+
+            return intent
+        }
     }
 
     @Inject
