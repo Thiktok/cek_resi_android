@@ -87,8 +87,7 @@ class TrackingDetailActivity : BaseActivity() {
         trackingDetailAwb.setValueText(data.summary.awb)
         val courierDetail =
             getString(R.string.courier_value, data.summary.courier, data.summary.service)
-        val detailStatus =
-            if (data.summary.status.isNullOrEmpty()) "on Delivery" else data.summary.status
+        val detailStatus = data.summary.status
         val detailSender = if (data.info.shipper.isNullOrEmpty()) {
             ""
         } else {
