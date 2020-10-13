@@ -1,19 +1,16 @@
 package com.ramadhan.couriertracking.view.adapter
 
-import android.graphics.Typeface
-import android.util.TypedValue
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.ramadhan.couriertracking.R
-import com.ramadhan.couriertracking.data.entity.History
+import com.ramadhan.couriertracking.data.entity.HistoryEntity
 import kotlinx.android.synthetic.main.item_history.view.*
 
-class HistoryAdapter(private val histories: MutableList<History>) :
+class HistoryAdapter(private val histories: MutableList<HistoryEntity>) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
     private var itemClickListener: OnItemClickListener? = null
@@ -55,9 +52,9 @@ class HistoryAdapter(private val histories: MutableList<History>) :
         return histories.size
     }
 
-    fun getData(position: Int): History = histories[position]
+    fun getData(position: Int): HistoryEntity = histories[position]
 
-    fun addList(list: List<History>) {
+    fun addList(list: List<HistoryEntity>) {
         histories.clear()
         histories.addAll(list)
         notifyDataSetChanged()
@@ -76,7 +73,7 @@ class HistoryAdapter(private val histories: MutableList<History>) :
             itemView.setOnClickListener(this)
         }
 
-        fun bind(history: History) {
+        fun bind(history: HistoryEntity) {
             itemView.historyTitle.text = history.title ?: history.awb
             itemView.historyAWB.text = history.awb
             itemView.historyCourier.text = history.courier.name

@@ -4,11 +4,11 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.ramadhan.couriertracking.data.entity.History
+import com.ramadhan.couriertracking.data.entity.HistoryEntity
 
 @Database(
     entities = [
-        History::class],
+        HistoryEntity::class],
     version = 1
 )
 abstract class HistoryDatabase : RoomDatabase() {

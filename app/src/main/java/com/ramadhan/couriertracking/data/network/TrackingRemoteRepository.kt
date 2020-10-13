@@ -1,16 +1,13 @@
 package com.ramadhan.couriertracking.data.network
 
 import com.ramadhan.couriertracking.data.network.response.BaseResponse
-import com.ramadhan.couriertracking.data.network.response.OperationCallback
 import com.ramadhan.couriertracking.data.entity.TrackData
+import com.ramadhan.couriertracking.data.network.response.DataResult
 
 interface TrackingRemoteRepository {
 
-    fun retrieveTrackingNew(
+    suspend fun retrieveTrackingNew(
         awb: String,
-        courier: String,
-        callback: OperationCallback<BaseResponse<TrackData>>
-    )
-
-    fun cancel()
+        courier: String
+    ): DataResult<BaseResponse<TrackData>>
 }

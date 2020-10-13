@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.bumptech.glide.Glide
 import com.ramadhan.couriertracking.R
+import com.ramadhan.couriertracking.core.extension.loadFromUrl
 import com.ramadhan.couriertracking.data.entity.Courier
 import kotlinx.android.synthetic.main.item_courier.view.*
 
@@ -34,7 +35,7 @@ class CourierSpinnerAdapter(context: Context, dataSource: List<Courier>) :
 
         if (courier != null) {
             view.courierItemName.text = courier.name
-            Glide.with(view).load(imgId).into(view.courierItemIcon)
+            view.courierItemIcon.setImageResource(imgId)
         }
 
         return view
