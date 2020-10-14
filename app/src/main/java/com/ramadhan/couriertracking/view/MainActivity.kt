@@ -115,6 +115,10 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
                     })
             }
         })
+
+        mainButtonBarcodeScan.setOnClickListener {
+            startActivity(BarcodeScanActivity.callIntent(this))
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
