@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/baseBarcodeScan"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.BarcodeScanActivity">
@@ -10,40 +11,40 @@
         android:id="@+id/barcodeScanner"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/barcodeScanGuide"/>
+        app:layout_constraintBottom_toBottomOf="@id/barcodeScanGuide"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/barcodeScanGuide"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.6"/>
-    
+        app:layout_constraintGuide_percent="0.6" />
+
     <TextView
         android:id="@+id/barcodeScanTextResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="2"
-        tools:text="Result"
-        android:textSize="20sp"
         android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/barcodeScanGuide"
+        android:maxLines="2"
+        android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-    
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barcodeScanGuide"
+        tools:text="Result" />
+
     <Button
         android:id="@+id/barcodeScanButtonApply"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/use_text"
-        android:textColor="@android:color/white"
-        android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_button_disabled"
+        android:text="@string/use_text"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

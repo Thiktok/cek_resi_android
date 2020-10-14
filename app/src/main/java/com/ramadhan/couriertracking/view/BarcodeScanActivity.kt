@@ -59,7 +59,10 @@ class BarcodeScanActivity : BaseActivity() {
 
     override fun onAction() {
         barcodeScanButtonApply.setOnClickListener {
-            setResult(Activity.RESULT_OK, Intent().putExtra(MainActivity.RESULT_LABEL, barcodeScanTextResult.text))
+            setResult(
+                Activity.RESULT_OK,
+                Intent().putExtra(MainActivity.RESULT_LABEL, barcodeScanTextResult.text)
+            )
             finish()
         }
     }
@@ -84,7 +87,6 @@ class BarcodeScanActivity : BaseActivity() {
     }
 
     private fun emptyResult() {
-        barcodeScanTextResult.text = ""
         barcodeScanTextResult.setBackgroundColor(Color.TRANSPARENT)
         barcodeScanButtonApply.setBackgroundResource(R.drawable.rounded_button_disabled)
         barcodeScanButtonApply.isEnabled = false

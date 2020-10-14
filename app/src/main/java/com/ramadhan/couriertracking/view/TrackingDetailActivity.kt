@@ -27,7 +27,7 @@ class TrackingDetailActivity : BaseActivity() {
         const val COURIER_NAME = "courier"
         const val AWB_NUMBER = "resi"
 
-        fun callIntent(context: Context, awb: String, courier: Courier): Intent{
+        fun callIntent(context: Context, awb: String, courier: Courier): Intent {
             val intent = Intent(context, TrackingDetailActivity::class.java)
             intent.putExtra(COURIER_NAME, courier)
             intent.putExtra(AWB_NUMBER, awb)

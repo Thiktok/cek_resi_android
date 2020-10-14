@@ -29,7 +29,7 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
 
-    companion object{
+    companion object {
         const val REQUEST_CODE = 101
         const val RESULT_LABEL = "AWB"
     }
@@ -115,7 +115,7 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
                     object : DialogEditTitle.DialogListener {
                         override fun onPositiveDialog(text: String?) {
                             hideKeyboard()
-                            with(historyAdapter.getData(position)){
+                            with(historyAdapter.getData(position)) {
                                 viewModel.editHistoryTitle(awb, text)
                             }
                         }
@@ -130,9 +130,9 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if ((requestCode == REQUEST_CODE) && (resultCode == Activity.RESULT_OK)){
+        if ((requestCode == REQUEST_CODE) && (resultCode == Activity.RESULT_OK)) {
             val result = data?.getStringExtra(RESULT_LABEL)
-            mainAWBInput.setText(result?:"")
+            mainAWBInput.setText(result ?: "")
         }
     }
 
