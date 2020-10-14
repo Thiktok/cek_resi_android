@@ -52,6 +52,8 @@ class BarcodeScanActivity : BaseActivity() {
     }
 
     override fun initView() {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Scan AWB"
     }
 
     override fun onAction() {
@@ -60,8 +62,8 @@ class BarcodeScanActivity : BaseActivity() {
     private var barcodeCallback = object : BarcodeCallback {
         override fun barcodeResult(result: BarcodeResult?) {
             result?.let { scanned ->
+                barcodeScanTextResult.text = scanned.text
                 if (scanned.text.matches(BARCODE_PATTERN.toRegex())) {
-                    barcodeScanTextResult.text = scanned.text
                     barcodeScanTextResult.setBackgroundResource(R.color.emerald)
                     barcodeScanButtonApply.setBackgroundResource(R.drawable.rounded_button)
                     barcodeScanButtonApply.isEnabled = true
@@ -81,6 +83,16 @@ class BarcodeScanActivity : BaseActivity() {
         barcodeScanTextResult.setBackgroundColor(Color.TRANSPARENT)
         barcodeScanButtonApply.setBackgroundResource(R.drawable.rounded_button_disabled)
         barcodeScanButtonApply.isEnabled = false
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
     override fun onResume() {
