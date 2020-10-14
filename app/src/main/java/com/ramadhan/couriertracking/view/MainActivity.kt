@@ -1,5 +1,7 @@
 package com.ramadhan.couriertracking.view
 
+import android.app.Activity
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -26,6 +28,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
+
+    companion object{
+        const val REQUEST_CODE = 101
+        const val RESULT_LABEL = "AWB"
+    }
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -117,7 +124,15 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
         })
 
         mainButtonBarcodeScan.setOnClickListener {
-            startActivity(BarcodeScanActivity.callIntent(this))
+            startActivityForResult(BarcodeScanActivity.callIntent(this), REQUEST_CODE)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if ((requestCode == REQUEST_CODE) && (resultCode == Activity.RESULT_OK)){
+            val result = data?.getStringExtra(RESULT_LABEL)
+            mainAWBInput.setText(result?:"")
         }
     }
 

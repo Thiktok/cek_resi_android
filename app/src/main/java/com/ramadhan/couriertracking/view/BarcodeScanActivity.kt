@@ -1,5 +1,6 @@
 package com.ramadhan.couriertracking.view
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -57,6 +58,10 @@ class BarcodeScanActivity : BaseActivity() {
     }
 
     override fun onAction() {
+        barcodeScanButtonApply.setOnClickListener {
+            setResult(Activity.RESULT_OK, Intent().putExtra(MainActivity.RESULT_LABEL, barcodeScanTextResult.text))
+            finish()
+        }
     }
 
     private var barcodeCallback = object : BarcodeCallback {
