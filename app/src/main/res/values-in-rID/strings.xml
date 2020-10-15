@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lacak Resi</string>
+    <string name="courier_tracker">Lacak Resi</string>
+    <string name="delete">Hapus</string>
+    <string name="change_title">Ganti Judul</string>
+    <string name="cancel_button">Batal</string>
+    <string name="cancel">Batal</string>
+    <string name="change">Ganti</string>
+</resources>

@@ -1,30 +1,31 @@
 <resources>
     <string name="app_name">Courier Tracking</string>
     <string name="courier_tracker">Courier Tracker</string>
-    <string name="awb_hint">No. Resi</string>
-    <string name="main_title">Cek Resi</string>
-    <string name="lacak">Lacak</string>
-    <string name="courier_item_icon">courier item icon</string>
-    <string name="courier_name">Nama Kurir</string>
-    <string name="no_resi">No. Resi</string>
-    <string name="tujuan_pengiriman">Tujuan Pengiriman</string>
-    <string name="status">Status</string>
-    <string name="colon">:</string>
-    <string name="courier_value">%s | %s</string>
-    <string name="tracking_detail">%s, %s</string>
-    <string name="courier_unavailable">%1$s | %2$s</string>
-    <string name="alert_title">Oops !!</string>
-    <string name="ok_button">Ok</string>
+    <string name="awb_hint" translatable="false">No. Resi</string>
+    <string name="main_title" translatable="false">Cek Resi</string>
+    <string name="lacak" translatable="false">Lacak</string>
+    <string name="courier_item_icon" translatable="false">courier item icon</string>
+    <string name="courier_name" translatable="false">Nama Kurir</string>
+    <string name="no_resi" translatable="false">No. Resi</string>
+    <string name="tujuan_pengiriman" translatable="false">Tujuan Pengiriman</string>
+    <string name="status" translatable="false">Status</string>
+    <string name="colon" translatable="false">:</string>
+    <string name="courier_value" translatable="false">%s | %s</string>
+    <string name="tracking_detail" translatable="false">%s, %s</string>
+    <string name="courier_unavailable" translatable="false">%1$s | %2$s</string>
+    <string name="alert_title" translatable="false">Oops !!</string>
+    <string name="ok_button" translatable="false">Ok</string>
     <string name="cancel_button">Cancel</string>
-    <string name="history">History</string>
+    <string name="history" translatable="false">History</string>
     <string name="delete">Delete</string>
     <string name="change_title">Change Title</string>
-    <string name="track_desc">%s\npaket berada di %s</string>
+    <string name="track_desc" translatable="false">%s\npaket berada di %s</string>
     <string name="cancel">Cancel</string>
     <string name="change">Change</string>
-    <string name="input_title">input title</string>
-    <string name="clear_history">Clear History</string>
-    <string name="title_changed">Title changed</string>
-    <string name="empty_awb">Masukkan resi terlebih dahulu</string>
-    <string name="no_internet">Tidak ada koneksi internet</string>
+    <string name="input_title" translatable="false">input title</string>
+    <string name="clear_history" translatable="false">Clear History</string>
+    <string name="title_changed" translatable="false">Title changed</string>
+    <string name="empty_awb" translatable="false">Masukkan resi terlebih dahulu</string>
+    <string name="no_internet" translatable="false">Tidak ada koneksi internet</string>
+    <string name="use_text" translatable="false">Gunakan text</string>
 </resources>
