@@ -22,6 +22,7 @@
     <string name="track_desc" translatable="false">%s\npaket berada di %s</string>
     <string name="cancel">Cancel</string>
     <string name="change">Change</string>
+    <string name="generic_error" translatable="false">Something went wrong</string>
     <string name="input_title" translatable="false">input title</string>
     <string name="clear_history" translatable="false">Clear History</string>
     <string name="title_changed" translatable="false">Title changed</string>

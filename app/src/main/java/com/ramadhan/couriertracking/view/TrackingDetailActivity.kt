@@ -113,8 +113,12 @@ class TrackingDetailActivity : BaseActivity() {
         if (it) loadingLayout.visible() else loadingLayout.invisible()
     }
 
-    private val onMessageErrorObserver = Observer<Any> {
-        Message.alert(this, it.toString(),
+    private val onMessageErrorObserver = Observer<String> {
+        var message = it
+        if (it.contains("account", false)) {
+            message = getString(R.string.generic_error)
+        }
+        Message.alert(this, message,
             DialogInterface.OnClickListener { _, _ -> onBackPressed() })
     }
 

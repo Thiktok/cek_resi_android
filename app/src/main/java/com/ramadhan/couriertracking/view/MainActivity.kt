@@ -88,7 +88,8 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
                     )
                 }
             } else {
-                Message.alert(this, getString(R.string.empty_awb), null)
+                mainAWBInput.error = getString(R.string.empty_awb)
+                mainAWBInput.requestFocus()
             }
         }
 
