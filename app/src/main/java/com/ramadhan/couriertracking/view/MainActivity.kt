@@ -118,7 +118,7 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
             override fun onDeleteMenuClick(position: Int) {
                 val item = historyAdapter.getData(position)
                 viewModel.deleteHistory(item.awb)
-                Message.notify(mainCoordinatorLayout, "${item.title ?: item.awb} Deleted")
+                Message.notify(mainCoordinatorLayout, "${item.title ?: item.awb} Deleted", mainAdsRoot)
             }
 
             override fun onEditMenuClick(position: Int) {
@@ -201,7 +201,7 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
 
     private val onTitleChange = Observer<Boolean> {
         if (it) {
-            Message.notify(mainCoordinatorLayout, getString(R.string.title_changed))
+            Message.notify(mainCoordinatorLayout, getString(R.string.title_changed), mainAdsRoot)
         }
     }
 
