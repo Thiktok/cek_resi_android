@@ -8,12 +8,18 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.MobileAds
 import com.google.zxing.ResultPoint
 import com.journeyapps.barcodescanner.BarcodeCallback
 import com.journeyapps.barcodescanner.BarcodeResult
 import com.journeyapps.barcodescanner.CaptureManager
+import com.ramadhan.couriertracking.BuildConfig
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.core.platform.BaseActivity
+import com.ramadhan.couriertracking.utils.ServiceData
 import kotlinx.android.synthetic.main.activity_barcode_scan.*
 
 class BarcodeScanActivity : BaseActivity() {
@@ -28,6 +34,7 @@ class BarcodeScanActivity : BaseActivity() {
     }
 
     private lateinit var captureManager: CaptureManager
+    private lateinit var interstitialAd: InterstitialAd
 
     override fun setupPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -50,6 +57,20 @@ class BarcodeScanActivity : BaseActivity() {
     override fun layoutId(): Int = R.layout.activity_barcode_scan
 
     override fun setupLib() {
+        MobileAds.initialize(this)
+        interstitialAd = InterstitialAd(this)
+        interstitialAd.adUnitId = if (BuildConfig.DEBUG) {
+            ServiceData.TEST_INTERSTITIAL_AD_ID
+        } else {
+            ServiceData.INTERSTITIAL_AD_ID
+        }
+        interstitialAd.loadAd(AdRequest.Builder().build())
+        interstitialAd.adListener = object : AdListener() {
+            override fun onAdClosed() {
+                super.onAdClosed()
+                onFinishResult()
+            }
+        }
     }
 
     override fun initView() {
@@ -59,12 +80,20 @@ class BarcodeScanActivity : BaseActivity() {
 
     override fun onAction() {
         barcodeScanButtonApply.setOnClickListener {
-            setResult(
-                Activity.RESULT_OK,
-                Intent().putExtra(MainActivity.RESULT_LABEL, barcodeScanTextResult.text)
-            )
-            finish()
+            if (interstitialAd.isLoaded) {
+                interstitialAd.show()
+            } else {
+                onFinishResult()
+            }
         }
+    }
+
+    private fun onFinishResult() {
+        setResult(
+            Activity.RESULT_OK,
+            Intent().putExtra(MainActivity.RESULT_LABEL, barcodeScanTextResult.text)
+        )
+        finish()
     }
 
     private var barcodeCallback = object : BarcodeCallback {
