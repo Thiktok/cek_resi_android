@@ -6,6 +6,11 @@ import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
+import com.ramadhan.couriertracking.BuildConfig
 import com.ramadhan.couriertracking.CourierTrackingApplication
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.core.extension.invisible
@@ -15,10 +20,12 @@ import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.data.entity.TrackData
 import com.ramadhan.couriertracking.data.entity.Tracking
 import com.ramadhan.couriertracking.utils.Message
+import com.ramadhan.couriertracking.utils.ServiceData
 import com.ramadhan.couriertracking.utils.Utils
 import com.ramadhan.couriertracking.view.adapter.TrackingRecyclerViewAdapter
 import com.ramadhan.couriertracking.viewmodel.TrackingViewModel
 import com.ramadhan.couriertracking.viewmodel.ViewModelFactory
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_tracking_detail.*
 import javax.inject.Inject
 
@@ -40,6 +47,7 @@ class TrackingDetailActivity : BaseActivity() {
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: TrackingViewModel
     private lateinit var trackingListAdapter: TrackingRecyclerViewAdapter
+    private lateinit var adView: AdView
     private var courierData: Courier? = null
     private var awbData: String? = null
 
@@ -61,6 +69,8 @@ class TrackingDetailActivity : BaseActivity() {
         viewModel.trackingData.observe(this, trackingObserver)
         viewModel.isViewLoading.observe(this, loadingObserver)
         viewModel.onMessageError.observe(this, onMessageErrorObserver)
+
+        MobileAds.initialize(this)
     }
 
     override fun initView() {
@@ -75,6 +85,7 @@ class TrackingDetailActivity : BaseActivity() {
             adapter = trackingListAdapter
             setHasFixedSize(true)
         }
+
     }
 
     override fun onAction() {
@@ -107,6 +118,7 @@ class TrackingDetailActivity : BaseActivity() {
             viewModel.saveAsHistory(awbData!!, courierData!!)
         }
 
+        initAds()
     }
 
     private val loadingObserver = Observer<Boolean> {
@@ -120,6 +132,19 @@ class TrackingDetailActivity : BaseActivity() {
         }
         Message.alert(this, message,
             DialogInterface.OnClickListener { _, _ -> onBackPressed() })
+    }
+
+    private fun initAds(){
+        adView = AdView(this)
+        adView.adSize = AdSize.SMART_BANNER
+        adView.adUnitId = if (BuildConfig.DEBUG) {
+            ServiceData.TEST_BANNER_AD_ID
+        } else {
+            ServiceData.BANNER_AD_ID
+        }
+        trackingDetailAdRoot.addView(adView)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 
     override fun onBackPressed() {

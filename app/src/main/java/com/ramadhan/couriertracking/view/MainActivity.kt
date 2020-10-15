@@ -2,16 +2,21 @@ package com.ramadhan.couriertracking.view
 
 import android.app.Activity
 import android.content.Intent
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.os.Build
+import android.view.*
 import android.widget.AdapterView
 import android.widget.Spinner
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 import com.google.gson.Gson
+import com.ramadhan.couriertracking.BuildConfig
 import com.ramadhan.couriertracking.CourierTrackingApplication
 import com.ramadhan.couriertracking.R
 import com.ramadhan.couriertracking.core.extension.hideKeyboard
@@ -20,6 +25,7 @@ import com.ramadhan.couriertracking.customview.DialogEditTitle
 import com.ramadhan.couriertracking.data.entity.Courier
 import com.ramadhan.couriertracking.data.entity.HistoryEntity
 import com.ramadhan.couriertracking.utils.Message
+import com.ramadhan.couriertracking.utils.ServiceData
 import com.ramadhan.couriertracking.view.adapter.CourierSpinnerAdapter
 import com.ramadhan.couriertracking.view.adapter.HistoryAdapter
 import com.ramadhan.couriertracking.viewmodel.MainViewModel
@@ -41,6 +47,7 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var courierList: List<Courier>
     private lateinit var historyAdapter: HistoryAdapter
     private lateinit var spinner: Spinner
+    private lateinit var adView: AdView
 
     private var courierData: Courier? = null
 
@@ -55,6 +62,8 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
 
         viewModel.historiesData.observe(this, historyObserver)
         viewModel.isChanged.observe(this, onTitleChange)
+
+        MobileAds.initialize(this) {}
     }
 
     override fun initView() {
@@ -72,6 +81,8 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
             adapter = historyAdapter
         }
             .addItemDecoration(DividerItemDecoration(this, llManager.orientation))
+
+        initAds()
     }
 
     override fun onAction() {
@@ -107,7 +118,7 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
             override fun onDeleteMenuClick(position: Int) {
                 val item = historyAdapter.getData(position)
                 viewModel.deleteHistory(item.awb)
-                Message.notify(mainCoordinatorLayout, "${item.title ?: item.awb} Deleted")
+                Message.notify(mainCoordinatorLayout, "${item.title ?: item.awb} Deleted", mainAdsRoot)
             }
 
             override fun onEditMenuClick(position: Int) {
@@ -135,6 +146,19 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
             val result = data?.getStringExtra(RESULT_LABEL)
             mainAWBInput.setText(result ?: "")
         }
+    }
+
+    private fun initAds(){
+        adView = AdView(this)
+        adView.adSize = AdSize.SMART_BANNER
+        adView.adUnitId = if (BuildConfig.DEBUG) {
+            ServiceData.TEST_BANNER_AD_ID
+        } else {
+            ServiceData.BANNER_AD_ID
+        }
+        mainAdsRoot.addView(adView)
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -177,7 +201,7 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
 
     private val onTitleChange = Observer<Boolean> {
         if (it) {
-            Message.notify(mainCoordinatorLayout, getString(R.string.title_changed))
+            Message.notify(mainCoordinatorLayout, getString(R.string.title_changed), mainAdsRoot)
         }
     }
 
