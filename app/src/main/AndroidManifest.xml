@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ramadhan.couriertracking">
+    package="com.inbedroom.couriertracking">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".CourierTrackingApplication"
+        android:name="com.inbedroom.couriertracking.CourierTrackingApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,13 +19,13 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-7418623981206452~1566470213"/>
         <activity
-            android:name=".view.BarcodeScanActivity"
+            android:name="com.inbedroom.couriertracking.view.BarcodeScanActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.TrackingDetailActivity"
+            android:name="com.inbedroom.couriertracking.view.TrackingDetailActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.MainActivity"
+            android:name="com.inbedroom.couriertracking.view.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

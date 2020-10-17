@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ramadhan.couriertracking.view.TrackingDetailActivity">
+    tools:context="com.inbedroom.couriertracking.view.TrackingDetailActivity">
 
     <LinearLayout
         android:id="@+id/trackingDetailAdRoot"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.ramadhan.couriertracking.customview.InfoTextView
+            <com.inbedroom.couriertracking.customview.InfoTextView
                 android:id="@+id/trackingDetailCourierName"
                 style="@style/Margin.Default.StartEnd"
                 android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                 app:labelColor="@android:color/black"
                 app:textLabel="Nama Kurir" />
 
-            <com.ramadhan.couriertracking.customview.InfoTextView
+            <com.inbedroom.couriertracking.customview.InfoTextView
                 android:id="@+id/trackingDetailAwb"
                 style="@style/Margin.Default.StartEnd"
                 android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                 app:labelColor="@android:color/black"
                 app:textLabel="No. Resi" />
 
-            <com.ramadhan.couriertracking.customview.InfoTextView
+            <com.inbedroom.couriertracking.customview.InfoTextView
                 android:id="@+id/trackingDetailStatus"
                 style="@style/Margin.Default.StartEnd"
                 android:layout_width="match_parent"
@@ -53,7 +53,7 @@
                 app:labelColor="@android:color/black"
                 app:textLabel="Status" />
 
-            <com.ramadhan.couriertracking.customview.InfoTextView
+            <com.inbedroom.couriertracking.customview.InfoTextView
                 android:id="@+id/trackingDetailSender"
                 style="@style/Margin.Default.StartEnd"
                 android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                 app:labelColor="@android:color/black"
                 app:textLabel="Pengirim" />
 
-            <com.ramadhan.couriertracking.customview.InfoTextView
+            <com.inbedroom.couriertracking.customview.InfoTextView
                 android:id="@+id/trackingDetailDestination"
                 style="@style/Margin.Default.StartEnd"
                 android:layout_width="match_parent"
