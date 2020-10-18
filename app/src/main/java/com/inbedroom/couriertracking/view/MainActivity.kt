@@ -149,11 +149,7 @@ class MainActivity : BaseActivity(), AdapterView.OnItemSelectedListener {
     private fun initAds(){
         adView = AdView(this)
         adView.adSize = AdSize.SMART_BANNER
-        adView.adUnitId = if (BuildConfig.DEBUG) {
-            ServiceData.TEST_BANNER_AD_ID
-        } else {
-            ServiceData.BANNER_AD_ID
-        }
+        adView.adUnitId = ServiceData.BANNER_AD_ID
         mainAdsRoot.addView(adView)
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)

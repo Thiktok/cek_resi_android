@@ -59,11 +59,7 @@ class BarcodeScanActivity : BaseActivity() {
     override fun setupLib() {
         MobileAds.initialize(this)
         interstitialAd = InterstitialAd(this)
-        interstitialAd.adUnitId = if (BuildConfig.DEBUG) {
-            ServiceData.TEST_INTERSTITIAL_AD_ID
-        } else {
-            ServiceData.INTERSTITIAL_AD_ID
-        }
+        interstitialAd.adUnitId = ServiceData.INTERSTITIAL_AD_ID
         interstitialAd.loadAd(AdRequest.Builder().build())
         interstitialAd.adListener = object : AdListener() {
             override fun onAdClosed() {
