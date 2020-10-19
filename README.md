@@ -30,3 +30,8 @@ Fitur tambahan:
 <img src="https://github.com/Ram-adhan/md-photo/blob/master/courier-tracking-android/Screenshot_20201019-195045_Courier%20Tracking.jpg" width="200" title="Barcode scan">
 <img src="https://github.com/Ram-adhan/md-photo/blob/master/courier-tracking-android/Screenshot_20201019-195103_Courier%20Tracking.jpg" width="200" title="Detail tracking">
 </p>
+
+### TL:DR;
+- To build your own apk, add Object named Service Data contains BASE_URL(use from binderbyte), API_KEY(from binderbyte)
+remove any ad-related line code (if you dont want to use ad)
+- To try the generated apk, search in folder release
