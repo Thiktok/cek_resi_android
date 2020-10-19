@@ -15,7 +15,8 @@ Support pengecekan resi dengan kurir:
 ### Techstack:
 1. Kotlin
 2. MVVM-LiveData pattern
-3. Rest-API
+3. Rest-API with Retrofit
+4. Dependency Injection with Dagger 2 
 
 ### Screenshot:
 <p float="left">
