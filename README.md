@@ -18,5 +18,7 @@ Support pengecekan resi dengan kurir:
 3. Rest-API
 
 ### Screenshot:
-<img src="https://github.com/Ram-adhan/md-photo/blob/master/courier-tracking-android/Screenshot_1601454488.png" width="400">
-<img src="https://github.com/Ram-adhan/md-photo/blob/master/courier-tracking-android/Screenshot_1601454610.png" width="400">
+<p float="left">
+<img src="https://github.com/Ram-adhan/md-photo/blob/master/courier-tracking-android/Screenshot_1601454488.png" width="250">
+<img src="https://github.com/Ram-adhan/md-photo/blob/master/courier-tracking-android/Screenshot_1601454610.png" width="250">
+</p>
