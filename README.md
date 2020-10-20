@@ -25,7 +25,7 @@ Fitur tambahan:
 
 ### Screenshot:
 <p float="left">
-<img src="https://github.com/Ram-adhan/md-photo/blob/master/courier-tracking-android/Screenshot_20201019-195030_Courier%20Tracking.jpg" width="200" title="Main Screen">
+<img src="https://raw.githubusercontent.com/Ram-adhan/md-photo/master/courier-tracking-android/Screenshot_20201019-195030_Courier%20Tracking.jpg" width="200" title="Main Screen">
 <img src="https://github.com/Ram-adhan/md-photo/blob/master/courier-tracking-android/Screenshot_20201019-195034_Courier%20Tracking.jpg" width="200" title="Courier list">
 <img src="https://github.com/Ram-adhan/md-photo/blob/master/courier-tracking-android/Screenshot_20201019-195045_Courier%20Tracking.jpg" width="200" title="Barcode scan">
 <img src="https://github.com/Ram-adhan/md-photo/blob/master/courier-tracking-android/Screenshot_20201019-195103_Courier%20Tracking.jpg" width="200" title="Detail tracking">
