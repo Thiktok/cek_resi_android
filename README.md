@@ -25,10 +25,10 @@ Fitur tambahan:
 
 ### Screenshot:
 <p float="left">
-<img src="https://raw.githubusercontent.com/Ram-adhan/md-photo/master/courier-tracking-android/Screenshot_20201019-195030_Courier%20Tracking.jpg" width="250" title="Main Screen">
-<img src="https://raw.githubusercontent.com/Ram-adhan/md-photo/master/courier-tracking-android/Screenshot_20201019-195034_Courier%20Tracking.jpg" width="250" title="Courier list">
-<img src="https://raw.githubusercontent.com/Ram-adhan/md-photo/master/courier-tracking-android/Screenshot_20201019-195045_Courier%20Tracking.jpg" width="250" title="Barcode scan">
-<img src="https://raw.githubusercontent.com/Ram-adhan/md-photo/master/courier-tracking-android/Screenshot_20201019-195103_Courier%20Tracking.jpg" width="250" title="Detail tracking">
+<img src="https://user-images.githubusercontent.com/52147185/97077914-d04e9c80-1611-11eb-91f2-732d5b1d1414.jpg" width="250" title="Main Screen">
+<img src="https://user-images.githubusercontent.com/52147185/97077920-d80e4100-1611-11eb-80a3-b541d7b627d6.jpg" width="250" title="Courier list">
+<img src="https://user-images.githubusercontent.com/52147185/97077921-d8a6d780-1611-11eb-940b-0a4fc4dd35c2.jpg" width="250" title="Barcode scan">
+<img src="https://user-images.githubusercontent.com/52147185/97077945-2cb1bc00-1612-11eb-892c-1d8369ba206d.jpg" width="250" title="Detail tracking">
 </p>
 
 ### TL:DR;
