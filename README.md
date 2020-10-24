@@ -24,6 +24,9 @@ Fitur tambahan:
 5. Barcode scanner with zxing
 6. Room
 
+### Demo:
+<img src="https://user-images.githubusercontent.com/52147185/97078379-186fbe00-1616-11eb-88bb-e36dd3c33026.gif" width="250" title="Usage">
+
 ### Screenshot:
 <p float="left">
 <img src="https://user-images.githubusercontent.com/52147185/97077914-d04e9c80-1611-11eb-91f2-732d5b1d1414.jpg" width="250" title="Main Screen">
