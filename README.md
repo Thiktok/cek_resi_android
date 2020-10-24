@@ -22,6 +22,7 @@ Fitur tambahan:
 3. Rest-API with Retrofit
 4. Dependency Injection with Dagger 2 
 5. Barcode scanner with zxing
+6. Room
 
 ### Screenshot:
 <p float="left">
