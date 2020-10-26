@@ -39,4 +39,4 @@ Fitur tambahan:
 - To build your own apk, add Object named Service Data contains BASE_URL(use from binderbyte), API_KEY(from binderbyte),
 remove any ad-related line code (if you dont want to use ad) e.g MobileAd.initialize, initAds function
 - To try the generated apk, search in folder release [Generated APK](https://github.com/Ram-adhan/cek_resi_android/blob/master/app/release/app-release.apk)
-- Now released on Playstore - [Playsotre App](https://play.google.com/store/apps/details?id=com.inbedroom.couriertracking)
+- Now released on Google Play - [Google Play](https://play.google.com/store/apps/details?id=com.inbedroom.couriertracking)
