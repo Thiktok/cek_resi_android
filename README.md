@@ -15,6 +15,7 @@ Support pengecekan resi dengan kurir:
 Fitur tambahan:
 1. History
 2. Scan barcode resi
+3. Cek Ongkir
 
 ### Techstack:
 1. Kotlin
