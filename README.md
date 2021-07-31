@@ -7,10 +7,11 @@ Support pengecekan resi dengan kurir:
 2. SiCepat - ok
 3. Ninja van - ok
 4. Pos Indonesia - ok
-5. Wahana - not tested
-6. Tiki - not tested
+5. Wahana - ok
+6. Tiki - ok
 7. anteraja - ok
 8. JNT - ok
+9. dll
 
 Fitur tambahan:
 1. History
