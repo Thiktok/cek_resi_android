@@ -27,14 +27,19 @@ Fitur tambahan:
 6. Room
 
 ### Demo:
-<img src="https://user-images.githubusercontent.com/52147185/127768549-a28a10ba-be4e-4c02-8d94-c3025bb74b2b.gif" width="250" title="Usage">
+<p float="left">
+<img src="https://user-images.githubusercontent.com/52147185/127768549-a28a10ba-be4e-4c02-8d94-c3025bb74b2b.gif" width="250" title="Cek Resi">
+<img src="https://user-images.githubusercontent.com/52147185/127769847-aa20c7ff-0874-44f9-880e-7359715193f9.gif" width="250" title="Cek Ongkir">
+</p>
 
 ### Screenshot:
 <p float="left">
-<img src="https://user-images.githubusercontent.com/52147185/97077914-d04e9c80-1611-11eb-91f2-732d5b1d1414.jpg" width="250" title="Main Screen">
-<img src="https://user-images.githubusercontent.com/52147185/97077920-d80e4100-1611-11eb-80a3-b541d7b627d6.jpg" width="250" title="Courier list">
-<img src="https://user-images.githubusercontent.com/52147185/97077921-d8a6d780-1611-11eb-940b-0a4fc4dd35c2.jpg" width="250" title="Barcode scan">
-<img src="https://user-images.githubusercontent.com/52147185/97077945-2cb1bc00-1612-11eb-892c-1d8369ba206d.jpg" width="250" title="Detail tracking">
+<img src="https://user-images.githubusercontent.com/52147185/127769930-41bf6724-16ab-4763-bd46-e4b8d8d031ce.jpg" width="250" title="Main Screen">
+<img src="https://user-images.githubusercontent.com/52147185/127769927-6abcb969-e75f-485c-820e-aad68c45bdc5.jpg" width="250" title="Courier list">
+<img src="https://user-images.githubusercontent.com/52147185/127769919-719fca74-0d81-48a8-bf56-d08fc5b0fa6a.jpg" width="250" title="Barcode scan">
+<img src="https://user-images.githubusercontent.com/52147185/127769928-52c43cb6-c3fb-4d6d-a016-3ef14267cc06.jpg" width="250" title="Detail tracking">
+<img src="https://user-images.githubusercontent.com/52147185/127769932-b91c1f47-b5d9-4c74-b8e7-9b35fa15ddff.jpg" width="250" title="Check Ongkir">
+<img src="https://user-images.githubusercontent.com/52147185/127769933-db72dd4e-460b-470c-a3ea-6bc956db5650.jpg" width="250" title="Detail Ongkir">
 </p>
 
 ### TL:DR;
