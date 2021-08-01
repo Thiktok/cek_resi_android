@@ -27,7 +27,7 @@ Fitur tambahan:
 6. Room
 
 ### Demo:
-<img src="https://user-images.githubusercontent.com/52147185/97078379-186fbe00-1616-11eb-88bb-e36dd3c33026.gif" width="250" title="Usage">
+<img src="https://user-images.githubusercontent.com/52147185/127768549-a28a10ba-be4e-4c02-8d94-c3025bb74b2b.gif" width="250" title="Usage">
 
 ### Screenshot:
 <p float="left">
